@@ -45,4 +45,8 @@ public class Orders {
 
     @ManyToMany(mappedBy = "orders")
     private Set<Glaze> glazes = new HashSet<>();
+
+    @ManyToMany(mappedBy = "orders")
+    private Set<Sprinkle> sprinkles = new HashSet<>();
+
 }
