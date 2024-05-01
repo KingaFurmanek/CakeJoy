@@ -1,0 +1,148 @@
+.con{
+    display: flex;
+    flex-direction: column;
+    height: 100vh; 
+}
+
+.dashboard-container{
+    margin: 0;
+    background-color: #FFF0F6;
+    color: #63565C;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+    height: inherit;
+}
+
+.hello-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    background-image: url('../assets/dashboard_background.svg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    height: 40%;
+
+}
+
+.hello-quote>h1 {
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.hello-quote>h2 {
+    margin-top: -10px;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.ordering-container {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.step1 > p,
+.step2 > p,
+.step3 > p,
+.step4 > p,
+.step5 > p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.step1,
+.step2,
+.step3,
+.step4,
+.step5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (max-width: 600px) {
+
+    .hello-quote{
+        margin-top: 60px;
+        height: 20vh;
+        width: auto;
+    }
+
+    .ordering-container {
+        flex-direction: column;
+        margin-top: 30px;
+        align-items: flex-start;
+        width: 75%;
+        height: 55%;
+        margin-bottom: 0;
+    }
+
+    .hello-quote>h1 {
+        font-size: 30px;
+    }
+    
+    .hello-quote>h2 {
+        font-size: 20px;
+    }
+
+    .step1,
+    .step2,
+    .step3,
+    .step4,
+    .step5 {
+        flex:1;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .step1 img,
+    .step2 img,
+    .step3 img,
+    .step4 img,
+    .step5 img {
+        max-width: 30%;
+        height: auto;
+    }
+
+    .navbar-bottom {
+        display: none;
+        overflow: hidden;
+    }
+
+    .media-navbar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        gap: 4rem;
+        width: 100%;
+        position: sticky;
+        bottom: 0;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+        background-color: #FFF0F6;
+        height: 60px;
+    }
+
+    .media-navbar button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        outline: none;
+    }
+
+    .media-navbar button:hover {
+        background: none;
+    }
+}

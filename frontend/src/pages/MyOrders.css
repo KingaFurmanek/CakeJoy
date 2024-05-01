@@ -1,0 +1,45 @@
+
+.myOrders-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchInput {
+    padding: 14px;
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    color: #63565C; 
+    border: 1px solid #63565C; 
+    outline: none;
+}
+
+.separator {
+    width: 80%;
+    margin: 20px; 
+    border: none;
+    height: 2px; /* Grubość linii */
+    background-color: #b9b8b8; /* Kolor linii */
+}
+
+.orders-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.order{
+    width: 100%;
+}

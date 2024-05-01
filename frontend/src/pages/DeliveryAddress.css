@@ -1,0 +1,48 @@
+.con{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: #FFF0F6;
+}
+
+.delivery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    position: relative;
+    height: auto;
+    color: #63565C;
+    padding-top: 50px;
+    
+}
+
+.addressForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 55%;
+    margin-top:20px;
+}
+
+.separator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0; /* Marginesy nad i pod separatorem */
+    width: 80%;
+}
+
+.separator {
+    height: 1px; /* Grubość linii */
+    background-color: #b9b8b8; /* Kolor linii */
+    width: inherit;
+}
+
+.separator-text {
+    margin: 0 10px; /* Marginesy między tekstem a liniami */
+    color: #888; /* Kolor tekstu */
+}

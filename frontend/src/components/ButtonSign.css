@@ -1,0 +1,36 @@
+.button {
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 25px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    width: inherit;
+}
+
+.pink {
+    background-color: #fc96bd;
+    color: white;
+}
+
+.lightPink {
+    background-color: #FFF9FB;
+    color: #4E4B4C;
+    box-shadow: 3px 3px 8px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+    background-color: #fc96bd;
+}
+
+@media (max-width: 600px) {
+    .button {
+        margin-top: 40px;
+        padding: 15px;
+        font-size: 30px;
+    }
+
+}

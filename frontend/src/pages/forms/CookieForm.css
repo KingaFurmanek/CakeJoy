@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+.con{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: #FFF0F6;
+}
+
+.cookieForm-container {
+    color: #63565C;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+    height: auto;
+    background: url("../../assets/light_background.svg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center top;
+    flex-grow: 1;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.cookieForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+}
+
+.custom-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Aby zachować równy odstęp między kolumnami */
+    width: 90%;
+    height: auto; /* Zmieniłem na auto, żeby dopasować się do zawartości */
+    flex-direction: row; /* Zmieniono na row, aby elementy układały się w jednym wierszu */
+    margin-bottom: 30px;
+}
+
+.custom-checkboxes .checkbox {
+    flex-basis: calc(50% - 10px); /* Ustawienie szerokości na 50% z odstępem 10px między checkboxami */
+    margin-bottom: 10px; /* Dodatkowy margines na dole */
+}
+
+.cookieForm p {
+    margin-top: 5px;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    width: inherit;
+    align-items: flex-start;
+
+}
+
+
+
+
+

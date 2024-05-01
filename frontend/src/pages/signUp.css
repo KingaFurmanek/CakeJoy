@@ -1,0 +1,53 @@
+html, body{
+    margin: 0;
+}
+
+.signUp-container {
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    background: url("../assets/cake_background.svg");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.signUpForm {
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+.no-valid {
+    border: 3px solid red;
+    border-radius: 1em;
+    box-shadow: 0 0 0.2rem red;
+    outline: none;
+}
+
+@media (max-width: 600px) {
+    .signUp-container {
+        background: url("../assets/cake_background.svg");
+        background-size: auto 100%; /* Dopasowuje obrazek do rozmiaru kontenera, zachowując proporcje */
+        background-repeat: no-repeat; /* Wyłącza powtarzanie obrazka */
+        background-position: right 10% center; /* Wyświetla obrazek na prawej stronie kontenera */
+    }
+
+    .signUpForm {
+        width: 80%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1400px) {
+    button{
+        margin-bottom:20px;
+    }
+}

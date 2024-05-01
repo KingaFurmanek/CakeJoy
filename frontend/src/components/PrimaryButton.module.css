@@ -1,0 +1,29 @@
+.button {
+    padding: 10px;
+    font-size: 25px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.blue{
+    background-color: #97DFFF;
+    color: white;
+}
+
+.button:hover {
+    background-color: #97DFFF;
+}
+
+@media (max-width: 600px) {
+    .button {
+        margin: 0;
+        width: 30%;
+    }
+
+}

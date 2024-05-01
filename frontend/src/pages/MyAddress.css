@@ -1,0 +1,41 @@
+.address-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: inherit;
+    width: auto;
+}
+
+.edit-button{
+    height: auto;
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    margin-right: 10%;
+}
+
+.address-container-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #63565C;
+    padding-bottom: 3%;
+}
+
+.input-edit {
+    padding: 6px;
+    border-radius: 10px;
+    border: 2px solid #BDBDBD; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: #63565C; 
+}
+
+.input-edit:focus {
+    outline: none; 
+    border-color: #7E7E7E; 
+}
