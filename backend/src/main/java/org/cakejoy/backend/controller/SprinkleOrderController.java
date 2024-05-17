@@ -34,8 +34,5 @@ public class SprinkleOrderController {
 //        return orderDTO.getSprinkles();
 //    }
 
-    @PostMapping("/{orderId}")
-    public ResponseEntity<Object> addSprinkleToOrder(@PathVariable Integer orderId, @RequestBody Set<SprinkleDTO> sprinkles) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDTO(201));
-    }
+
 }

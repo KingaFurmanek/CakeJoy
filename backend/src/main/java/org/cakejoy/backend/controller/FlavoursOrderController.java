@@ -28,8 +28,5 @@ public class FlavoursOrderController {
 //        return orderDTO.getFlavours();
 //    }
 
-    @PostMapping("/{orderId}")
-    public ResponseEntity<Object> addSFlavoursToOrder(@PathVariable Integer orderId, @RequestBody Set<FlavourDTO> flavours) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDTO(201));
-    }
+
 }
