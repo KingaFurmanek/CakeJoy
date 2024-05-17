@@ -1,45 +1,51 @@
 package org.cakejoy.backend.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.cakejoy.backend.api.external.*;
-import lombok.NoArgsConstructor;
-import org.cakejoy.backend.api.internal.Address;
 import org.cakejoy.backend.api.internal.Users;
+import org.cakejoy.backend.service.JwtService;
+import org.cakejoy.backend.service.UsersService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/api/users")
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class UsersController {
 
-    @GetMapping("/{userId}/address")
-    public Address getUserAddress(@PathVariable Integer userId) {
-        Address address = new Address()
-                .setId(1)
-                .setCountry("Poland")
-                .setPostcode("00-001")
-                .setCity("Warsaw")
-                .setStreet("Main Street")
-                .setNumber("123");
+    private final UsersService usersService;
+    private final JwtService jwtService;
 
-        Users user = new Users()
-                .setId(userId)
-                .setName("John")
-                .setSurname("Doe")
-                .setEmail("john.doe@example.com")
-                .setImage("profile.jpg")
-                .setAddress(address);
+    @GetMapping("/address")
+    public ResponseEntity<AddressDTO> getUserAddress(Authentication authentication) {
+        Users currentUser = (Users) authentication.getPrincipal();
+        String userEmail = currentUser.getEmail();
+        UsersDTO userDTO = usersService.getUserByEmail(userEmail);
+        if (userDTO != null) {
+            return ResponseEntity.ok(usersService.getUserAddress(userDTO.getId()));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-        address.setUser(user);
-
-        return user.getAddress();
-
+    @GetMapping("/info")
+    public ResponseEntity<UsersDTO> getUserInfo(Authentication authentication) {
+        Users currentUser = (Users) authentication.getPrincipal();
+        String userEmail = currentUser.getEmail();
+        UsersDTO userDTO = usersService.getUserByEmail(userEmail);
+        if (userDTO != null) {
+            return ResponseEntity.ok(usersService.getUserByEmail(userDTO.getEmail()));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/{userId}/address")
-    public ResponseEntity<Object>editUserAddress(@PathVariable Integer userId, @RequestBody AddressDTO updatedAddress) {
+    public ResponseEntity<Object> editUserAddress(@PathVariable Integer userId, @RequestBody AddressDTO updatedAddress) {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseDTO(200));
     }
 }
+

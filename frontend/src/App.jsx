@@ -11,25 +11,34 @@ import Account from './pages/Account';
 import MyOrders from './pages/MyOrders';
 import Order from './pages/Order';
 import MyAddress from './pages/MyAddress';
+import ClientsOrders from './pages/ClientsOrders';
+import ClientOrder from './pages/ClientOrder';
+import AccountBaker from './pages/AccountBaker';
+import { CategoryProvider } from './components/CategoryContext';
 
 function App() {
   return (
     <Router>
+      <CategoryProvider>
       <div>
         <Routes>
           <Route exact path="/signUp" element={<SignUp />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/chooseCategory" element={<ChooseCategory />} />
-          <Route exact path="/cookieForm" element={<CookieForm />} />
+          <Route exact path="/cookiesForm" element={<CookieForm />} />
           <Route exact path="/deliveryAddress" element={<DeliveryAddress />} />
           <Route exact path="/success" element={<Success />} />
           <Route exact path="/account" element={<Account />} />
           <Route exact path="/myOrders" element={<MyOrders />} />
           <Route exact path="/order" element={<Order />} />
           <Route exact path="/myAddress" element={<MyAddress />} />
+          <Route exact path="/clientsOrders" element={<ClientsOrders />} />
+          <Route exact path="/clientOrder" element={<ClientOrder />} />
+          <Route exact path="/accountBaker" element={<AccountBaker />} />
         </Routes>
       </div>
+      </CategoryProvider>
     </Router>
   );
 }

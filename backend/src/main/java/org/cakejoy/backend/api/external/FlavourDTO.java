@@ -10,7 +10,6 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class FlavourDTO {
-    private Integer id;
     private String name;
 }
 

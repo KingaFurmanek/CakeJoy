@@ -5,6 +5,7 @@ import PrimaryButton from '../components/PrimaryButton';
 import ButtonSign from '../components/ButtonSign';
 import './Account.css';
 import userImg from '../assets/login.svg';
+import axios from "../../axiosConfig.js";
 
 function Account() {
     return (

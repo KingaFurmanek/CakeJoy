@@ -46,3 +46,15 @@
     margin: 0 10px; /* Marginesy między tekstem a liniami */
     color: #888; /* Kolor tekstu */
 }
+
+@media(max-width: 600px){
+    .separator-text {
+        font-size: 20px;
+    }
+
+    .addressForm {
+        width: 70%;
+    }
+
+
+}

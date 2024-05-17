@@ -18,21 +18,21 @@ import java.util.Set;
 @RequestMapping("/api/sprinkles-order")
 public class SprinkleOrderController {
 
-    @GetMapping("/{orderId}")
-    public Set<SprinkleDTO> getSprinklesForOrder(@PathVariable Integer orderId) {
-
-        Set<SprinkleDTO> sprinkles = new HashSet<>();
-        sprinkles.add(new SprinkleDTO().setId(1).setName("Chocolate chips"));
-        sprinkles.add(new SprinkleDTO().setId(2).setName("Rainbow sprinkles"));
-        sprinkles.add(new SprinkleDTO().setId(3).setName("Sugar crystals"));
-
-        OrdersDTO orderDTO = new OrdersDTO();
-        orderDTO.setId(orderId);
-
-        orderDTO.setSprinkle(sprinkles);
-
-        return orderDTO.getSprinkle();
-    }
+//    @GetMapping("/{orderId}")
+//    public Set<SprinkleDTO> getSprinklesForOrder(@PathVariable Integer orderId) {
+//
+//        Set<SprinkleDTO> sprinkles = new HashSet<>();
+//        sprinkles.add(new SprinkleDTO().setId(1).setName("Chocolate chips"));
+//        sprinkles.add(new SprinkleDTO().setId(2).setName("Rainbow sprinkles"));
+//        sprinkles.add(new SprinkleDTO().setId(3).setName("Sugar crystals"));
+//
+//        OrdersDTO orderDTO = new OrdersDTO();
+//        orderDTO.setId(orderId);
+//
+//        orderDTO.setSprinkles(sprinkles);
+//
+//        return orderDTO.getSprinkles();
+//    }
 
     @PostMapping("/{orderId}")
     public ResponseEntity<Object> addSprinkleToOrder(@PathVariable Integer orderId, @RequestBody Set<SprinkleDTO> sprinkles) {

@@ -63,9 +63,14 @@
     display: flex;
     width: inherit;
     align-items: flex-start;
-
 }
 
+@media(max-width: 600px){
+    .cookieForm p {
+        font-size: 22px;
+    }
+
+}
 
 
 

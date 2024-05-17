@@ -1,0 +1,64 @@
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    bottom: 20%; /* Ustawiamy odstęp od dolnej krawędzi strony */
+    left: 50%; /* Ustawiamy poziome wycentrowanie */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    gap: 10px;
+    width: 100%;
+    overflow-y: scroll;
+
+}
+
+.order-number {
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #63565C;
+    padding-top: 2%;
+}
+
+label {
+    color: #63565C; /* Kolor napisu */
+}
+
+select {
+    width: 200px; /* Zwiększamy szerokość dropdowna */
+    padding: 10px;
+    margin-top: 5px; /* Dodajemy odstęp od góry */
+    border: 1px solid #BDBDBD; /* Dodajemy szarą obramówkę */
+    border-radius: 5px; /* Zaokrąglamy rogi */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    margin-bottom: 10%;
+}
+
+.order-container {
+    height: calc(100vh - 20%);
+    overflow-y: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description-container {
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: calc(100vh - 20% - 20px); /* Wysokość widoku minus wysokość separacji i odstępu od dolnej krawędzi strony */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    color: #63565C;
+}
+
+.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
+}

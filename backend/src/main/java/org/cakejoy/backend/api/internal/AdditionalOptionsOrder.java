@@ -23,5 +23,5 @@ public class AdditionalOptionsOrder {
 
     @ManyToOne
     @JoinColumn(name = "additional_option_id")
-    private AdditionalOptions additionalOption;
+    private AdditionalOptions additionalOptions;
 }

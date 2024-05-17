@@ -18,16 +18,16 @@ public class OrdersDTO {
     private Integer tiers;
     private String additionalInfo;
     private String colours;
-    private Date date;
-    private CategoryDTO category;
+    private String date;
+    private String category;
     private String state;
     private Integer score;
-    private Set<FlavourDTO> flavours = new HashSet<>();
-    private Set<AdditionalOptionsDTO> additionalOptions = new HashSet<>();
-    private Set<GlazeDTO> glazes = new HashSet<>();
-    private Set<OrderUserDTO> orderUsers = new HashSet<>();
-    private Set<DecorationDTO> decoration = new HashSet<>();
-    private Set<SprinkleDTO> sprinkle = new HashSet<>();
+    private Set<String> flavours = new HashSet<>();
+    private Set<String> additionalOptions = new HashSet<>();
+    private Set<String> glazes = new HashSet<>();
+//    private Set<OrderUserDTO> orderUsers = new HashSet<>();
+    private Set<String> decorations = new HashSet<>();
+    private Set<String> sprinkles = new HashSet<>();
 
 }
 

@@ -6,12 +6,8 @@ const PrimaryButton = ({ color, children, onClick, redirectTo }) => {
 
     const handleClick = () => {
         if (redirectTo) {
-            // Jeśli używasz React Router
-            // this.props.history.push(redirectTo);
-            // Jeśli nie używasz React Router
             window.location.href = redirectTo;
         } else if (onClick) {
-            // Jeśli onClick jest zdefiniowany, wywołaj tę funkcję
             onClick();
         }
     };

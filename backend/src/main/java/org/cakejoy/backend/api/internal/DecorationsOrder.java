@@ -23,4 +23,5 @@ public class DecorationsOrder {
     @ManyToOne
     @JoinColumn(name = "decoration_id")
     private Decoration decoration;
+
 }

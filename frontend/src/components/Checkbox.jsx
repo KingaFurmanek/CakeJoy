@@ -3,19 +3,20 @@
 import React from 'react';
 import './Checkbox.css';
 
-function Checkbox({ id, label, checked, value}) {
-  return (
-    <label htmlFor={id} className="checkbox">
-      <input 
-        type="checkbox" 
-        id={id} 
-        name={id} 
-        checked={checked}
-        value={value}
-      />
-      {label}
-    </label>
-  );
+function Checkbox({ id, label, value, name, checked, onChange}) {
+    return (
+        <div className="checkbox">
+            <input
+                type="checkbox"
+                id={id}
+                value={value}
+                name={name}
+                checked={checked}
+                onChange={onChange}
+            />
+            <label htmlFor={id}>{label}</label>
+        </div>
+    );
 }
 
 export default Checkbox;

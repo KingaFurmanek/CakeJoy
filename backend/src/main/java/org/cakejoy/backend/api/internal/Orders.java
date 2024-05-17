@@ -26,17 +26,17 @@ public class Orders {
     private Integer tiers;
     private String additionalInfo;
     private String colours;
-    private Date date;
+    private String date;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
     private String state;
     private Integer score;
 
-    //Relacja OneToMany z klasą OrderUser
-    @OneToMany(mappedBy = "order")
-    private Set<OrderUser> orderUser;
-
+//    //Relacja OneToMany z klasą OrderUser
+//    @OneToMany(mappedBy = "order")
+//    private Set<OrderUser> orderUser;
+//
     @ManyToMany(mappedBy = "orders")
     private Set<Flavour> flavours = new HashSet<>();
 
@@ -48,5 +48,8 @@ public class Orders {
 
     @ManyToMany(mappedBy = "orders")
     private Set<Sprinkle> sprinkles = new HashSet<>();
+
+    @ManyToMany(mappedBy = "orders")
+    private Set<Decoration> decorations = new HashSet<>();
 
 }

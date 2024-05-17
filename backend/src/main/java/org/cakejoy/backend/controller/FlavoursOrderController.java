@@ -14,22 +14,22 @@ import java.util.Set;
 @RequestMapping("/api/flavours-order")
 public class FlavoursOrderController {
 
-    @GetMapping("/{orderId}")
-    public Set<FlavourDTO> getFlavoursForOrder(@PathVariable Integer orderId) {
-        Set<FlavourDTO> flavours = new HashSet<>();
-        flavours.add(new FlavourDTO().setId(1).setName("Chocolate"));
-        flavours.add(new FlavourDTO().setId(2).setName("Lemon "));
-
-        OrdersDTO orderDTO = new OrdersDTO();
-        orderDTO.setId(orderId);
-
-        orderDTO.setFlavours(flavours);
-
-        return orderDTO.getFlavours();
-    }
+//    @GetMapping("/{orderId}")
+//    public Set<FlavourDTO> getFlavoursForOrder(@PathVariable Integer orderId) {
+//        Set<FlavourDTO> flavours = new HashSet<>();
+//        flavours.add(new FlavourDTO().setId(1).setName("Chocolate"));
+//        flavours.add(new FlavourDTO().setId(2).setName("Lemon "));
+//
+//        OrdersDTO orderDTO = new OrdersDTO();
+//        orderDTO.setId(orderId);
+//
+//        orderDTO.setFlavours(flavours);
+//
+//        return orderDTO.getFlavours();
+//    }
 
     @PostMapping("/{orderId}")
-    public ResponseEntity<Object> addSprinkleToOrder(@PathVariable Integer orderId, @RequestBody Set<FlavourDTO> flavours) {
+    public ResponseEntity<Object> addSFlavoursToOrder(@PathVariable Integer orderId, @RequestBody Set<FlavourDTO> flavours) {
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDTO(201));
     }
 }

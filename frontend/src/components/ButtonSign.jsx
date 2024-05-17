@@ -1,8 +1,9 @@
 import React from 'react';
-import './ButtonSign.css';
+import styles from './ButtonSign.module.css';
 
 const ButtonSign = ({ color, children, onClick, redirectTo }) => {
-  const buttonClassName = `button ${color}`;
+  // Sprawdzenie, czy kolor istnieje w stylach, jeśli nie, użyj domyślnego koloru
+  const buttonColor = styles[color] ? styles[color] : styles.default;
 
   const handleClick = () => {
     if (redirectTo) {
@@ -13,7 +14,7 @@ const ButtonSign = ({ color, children, onClick, redirectTo }) => {
   };
 
   return (
-    <button className={buttonClassName} onClick={handleClick}>
+    <button className={`${styles.button} ${buttonColor}`} onClick={handleClick}>
       {children}
     </button>
   );

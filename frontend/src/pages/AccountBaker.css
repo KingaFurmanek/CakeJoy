@@ -1,0 +1,49 @@
+
+.con{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: #FFF0F6;
+}
+
+.account-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 80px;
+}
+
+.account-container>.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+}
+
+.account-container>.login p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    margin:5px;
+}
+
+.login img{
+    max-width: 90%;
+    height: auto;
+}
+
+.file-label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+.data-container-baker{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+}
