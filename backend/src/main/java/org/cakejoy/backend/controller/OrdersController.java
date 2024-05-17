@@ -34,7 +34,6 @@ public class OrdersController {
             ordersService.submitOrder(orderRequestDTO);
             return ResponseEntity.ok("Order submitted successfully");
         } catch (Exception e) {
-            // Obsługa błędów związanych z zapisem do bazy danych
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error submitting order: " + e.getMessage());
         }
 
