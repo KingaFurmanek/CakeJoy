@@ -19,18 +19,6 @@ public class UsersController {
     private final UsersService usersService;
     private final JwtService jwtService;
 
-    @GetMapping("/address")
-    public ResponseEntity<AddressDTO> getUserAddress(Authentication authentication) {
-        Users currentUser = (Users) authentication.getPrincipal();
-        String userEmail = currentUser.getEmail();
-        UsersDTO userDTO = usersService.getUserByEmail(userEmail);
-        if (userDTO != null) {
-            return ResponseEntity.ok(usersService.getUserAddress(userDTO.getId()));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
     @GetMapping("/info")
     public ResponseEntity<UsersDTO> getUserInfo(Authentication authentication) {
         Users currentUser = (Users) authentication.getPrincipal();
@@ -41,11 +29,6 @@ public class UsersController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
-
-    @PutMapping("/{userId}/address")
-    public ResponseEntity<Object> editUserAddress(@PathVariable Integer userId, @RequestBody AddressDTO updatedAddress) {
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDTO(200));
     }
 }
 

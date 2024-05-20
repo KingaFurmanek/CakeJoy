@@ -8,13 +8,12 @@ import axios from '../../axiosConfig';
 const MyAddress = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [country, setCountry] = useState('');
-    const [postcode, setPostalCode] = useState('');
+    const [postcode, setPostcode] = useState('');
     const [city, setCity] = useState('');
     const [street, setStreet] = useState('');
-    const [number, setHouseNumber] = useState('');
+    const [number, setNumber] = useState('');
 
     useEffect(() => {
-
         const fetchUserData = async () => {
             try {
                 const response = await axios.get('/api/users/address', {
@@ -24,10 +23,10 @@ const MyAddress = () => {
                 });
                 const addressData = response.data;
                 setCountry(addressData.country);
-                setPostalCode(addressData.postcode);
+                setPostcode(addressData.postcode);
                 setCity(addressData.city);
                 setStreet(addressData.street);
-                setHouseNumber(addressData.number);
+                setNumber(addressData.number);
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
@@ -39,8 +38,26 @@ const MyAddress = () => {
         setIsEditing(true);
     };
 
-    const handleSaveClick = () => {
-        setIsEditing(false);
+    const handleSaveClick = async () => {
+        try {
+            const updatedAddress = {
+                country,
+                postcode,
+                city,
+                street,
+                number
+            };
+
+            await axios.put('/api/users/address', updatedAddress, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            setIsEditing(false);
+        } catch (error) {
+            console.error('Error saving user data:', error);
+        }
     };
 
     return (
@@ -58,7 +75,7 @@ const MyAddress = () => {
                         Country: {isEditing ? <input className="input-edit" type="text" value={country} onChange={(e) => setCountry(e.target.value)} /> : country}
                     </div>
                     <div className="address-box">
-                        Postal Code: {isEditing ? <input className="input-edit" type="text" value={postcode} onChange={(e) => setPostalCode(e.target.value)} /> : postcode}
+                        Postal Code: {isEditing ? <input className="input-edit" type="text" value={postcode} onChange={(e) => setPostcode(e.target.value)} /> : postcode}
                     </div>
                     <div className="address-box">
                         City: {isEditing ? <input className="input-edit" type="text" value={city} onChange={(e) => setCity(e.target.value)} /> : city}
@@ -67,12 +84,11 @@ const MyAddress = () => {
                         Street: {isEditing ? <input className="input-edit" type="text" value={street} onChange={(e) => setStreet(e.target.value)} /> : street}
                     </div>
                     <div className="address-box">
-                        House number/Flat: {isEditing ? <input className="input-edit" type="text" value={number} onChange={(e) => setHouseNumber(e.target.value)} /> : number}
+                        House number/Flat: {isEditing ? <input className="input-edit" type="text" value={number} onChange={(e) => setNumber(e.target.value)} /> : number}
                     </div>
                 </div>
                 {isEditing && <PrimaryButton color="blue" onClick={handleSaveClick}>Save</PrimaryButton>}
             </div>
-
             <Footer />
         </div>
     );

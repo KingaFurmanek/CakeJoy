@@ -3,8 +3,11 @@ package org.cakejoy.backend.service;
 import lombok.RequiredArgsConstructor;
 import org.cakejoy.backend.api.external.AddressDTO;
 import org.cakejoy.backend.api.external.UsersDTO;
+import org.cakejoy.backend.api.internal.Address;
 import org.cakejoy.backend.api.internal.Users;
+import org.cakejoy.backend.mapper.AddressMapper;
 import org.cakejoy.backend.mapper.UsersMapper;
+import org.cakejoy.backend.repository.AddressRepository;
 import org.cakejoy.backend.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
     private final UsersMapper usersMapper;
+    private final AddressMapper addressMapper;
+    private final AddressRepository addressRepository;
 
     @Override
     public AddressDTO getUserAddress(Integer userId) {
@@ -31,6 +36,22 @@ public class UsersServiceImpl implements UsersService {
             return usersMapper.map(user);
         }
         return null;
+    }
+
+    @Override
+    public boolean editUserAddress(String email, AddressDTO updatedAddress) {
+        Users user = usersRepository.findUserByEmail(email).orElse(null);
+        if (user != null) {
+            Address address = user.getAddress();
+            if (address == null) {
+                address = new Address();
+                address.setUser(user);
+            }
+            addressMapper.map(updatedAddress, address);
+            addressRepository.save(address);
+            return true;
+        }
+        return false;
     }
 }
 

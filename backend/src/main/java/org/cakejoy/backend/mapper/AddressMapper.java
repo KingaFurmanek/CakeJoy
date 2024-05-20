@@ -18,4 +18,14 @@ public class AddressMapper {
                 .setNumber(address.getNumber());
     }
 
+    public void map(AddressDTO addressDTO, Address address) {
+        if (addressDTO != null) {
+            address.setCountry(addressDTO.getCountry());
+            address.setPostcode(addressDTO.getPostcode());
+            address.setCity(addressDTO.getCity());
+            address.setStreet(addressDTO.getStreet());
+            address.setNumber(addressDTO.getNumber());
+        }
+    }
+
 }
