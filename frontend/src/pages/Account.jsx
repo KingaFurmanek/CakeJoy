@@ -6,8 +6,17 @@ import ButtonSign from '../components/ButtonSign';
 import './Account.css';
 import userImg from '../assets/login.svg';
 import axios from "../../axiosConfig.js";
+import {useNavigate} from "react-router-dom";
 
 function Account() {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        window.localStorage.removeItem('token');
+        navigate('/login');
+    };
+
     return (
         <div className="con">
             <Navbar />
@@ -22,7 +31,7 @@ function Account() {
                 <div className="data-container">
                     <ButtonSign color="lightPink" redirectTo="/myOrders">My Orders</ButtonSign>
                     <ButtonSign color="lightPink" redirectTo="/myAddress">My Address</ButtonSign>
-                    <ButtonSign color="lightPink" >Log out</ButtonSign>
+                    <ButtonSign color="lightPink" onClick={handleLogout}>Log out</ButtonSign>
                 </div>
             </div>
             <Footer />

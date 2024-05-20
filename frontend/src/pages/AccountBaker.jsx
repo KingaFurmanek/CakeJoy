@@ -1,12 +1,19 @@
 import React from 'react';
 import Footer from '../components/Footer';
-import PrimaryButton from '../components/PrimaryButton';
 import ButtonSign from '../components/ButtonSign';
 import './AccountBaker.css';
 import userImg from '../assets/login.svg';
 import BakerNavbar from '../components/BakerNavbar';
+import {useNavigate} from "react-router-dom";
 
 function AccountBaker() {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        window.localStorage.removeItem('token');
+        navigate('/login');
+    };
+
     return (
         <div className="con">
             <BakerNavbar/>
@@ -20,7 +27,7 @@ function AccountBaker() {
                 </form>
                 <div className="data-container-baker">
                     <ButtonSign color="lightPink" redirectTo="/clientsOrders">Clients Orders</ButtonSign>
-                    <ButtonSign color="lightPink" >Log out</ButtonSign>
+                    <ButtonSign color="lightPink" onClick={handleLogout}>Log out</ButtonSign>
                 </div>
             </div>
             <Footer />
