@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.Objects;
+
 @Data
 @Entity
 @Table(name="address")
@@ -25,4 +27,9 @@ public class Address {
     private String city;
     private String street;
     private String number;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, country, postcode, city, street, number);
+    }
 }

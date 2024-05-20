@@ -8,7 +8,7 @@
     background-color: #FFF0F6;
 }
 
-.cookieForm-container {
+.form-container {
     color: #63565C;
     display: flex;
     justify-content: flex-start;
@@ -31,7 +31,7 @@
     align-items: center;
 }
 
-.cookieForm {
+.form-details{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,7 +56,7 @@
     margin-bottom: 10px; /* Dodatkowy margines na dole */
 }
 
-.cookieForm p {
+.form-details p {
     margin-top: 5px;
     font-size: 25px;
     font-family: 'Montserrat', sans-serif;
@@ -66,7 +66,7 @@
 }
 
 @media(max-width: 600px){
-    .cookieForm p {
+    .form-details p {
         font-size: 22px;
     }
 

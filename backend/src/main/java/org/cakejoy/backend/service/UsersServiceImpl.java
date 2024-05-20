@@ -27,8 +27,9 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UsersDTO getUserByEmail(String email) {
         Users user = usersRepository.findUserByEmail(email).orElse(null);
-        if (user != null)
+        if (user != null) {
             return usersMapper.map(user);
+        }
         return null;
     }
 }

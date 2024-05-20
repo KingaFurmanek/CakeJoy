@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.Objects;
+
 @Data
 @Entity
 @Table(name = "order_users")
@@ -25,4 +27,17 @@ public class OrderUser {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users user;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderUser orderUser = (OrderUser) o;
+        return Objects.equals(id, orderUser.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

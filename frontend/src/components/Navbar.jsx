@@ -1,5 +1,6 @@
 import React from 'react';
-import './Navbar.css'; 
+import { Link } from 'react-router-dom'; // Importowanie komponentu Link z React Router
+import './Navbar.css';
 import logo_2 from '../assets/logo_withoutBackground.svg';
 
 const Navbar = () => {
@@ -8,9 +9,9 @@ const Navbar = () => {
             <h2>Cake Joy</h2>
             <div className="menu">
                 <ul>
-                    <a href="dashboard">HOME</a>
-                    <a href="chooseCategory">ORDER</a>
-                    <a href="account">ACCOUNT</a>
+                    <li><Link to="/dashboard">HOME</Link></li>
+                    <li><Link to="/chooseCategory">ORDER</Link></li>
+                    <li><Link to="/account">ACCOUNT</Link></li>
                 </ul>
                 <img className='logo_2' src={logo_2} alt="Logo" />
             </div>

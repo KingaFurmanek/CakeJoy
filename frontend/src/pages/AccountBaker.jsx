@@ -13,7 +13,7 @@ function AccountBaker() {
             <div className="account-container">
                 <form action="account" className="login" method="POST" encType="multipart/form-data">
                     <img src={userImg} alt="User Image" />
-                    <p>Login</p>
+                    <p>Baker</p>
                     <div className="file-label">
                         <input type="file" name="file" />
                     </div>

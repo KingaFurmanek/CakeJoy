@@ -1,9 +1,10 @@
-
 .myOrders-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    overflow-y: auto;
+    justify-content: flex-start;
+    height: 100%;
 }
 
 .search-bar {
@@ -26,10 +27,9 @@
 
 .separator {
     width: 80%;
-    margin: 20px; 
-    border: none;
-    height: 2px; /* Grubość linii */
-    background-color: #b9b8b8; /* Kolor linii */
+    margin: 20px;
+    height: 2px;
+    background-color: #b9b8b8;
 }
 
 .orders-container{
@@ -37,7 +37,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 40%;
 }
 
 .order{

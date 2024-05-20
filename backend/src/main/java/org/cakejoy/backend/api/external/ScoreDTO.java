@@ -9,8 +9,6 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class AdditionalOptionsOrderDTO {
-    private Integer id;
-    private Integer orderId;
-    private Integer additionalOptionsId;
+public class ScoreDTO {
+    Integer score;
 }

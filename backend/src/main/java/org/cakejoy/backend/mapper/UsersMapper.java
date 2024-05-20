@@ -20,6 +20,8 @@ public class UsersMapper {
                 .setId(user.getId())
                 .setName(user.getName())
                 .setSurname(user.getSurname())
+                .setEmail(user.getEmail())
+                .setImage(user.getImage())
                 .setAddress(addressMapper.map(address, user.getId()));
     }
 

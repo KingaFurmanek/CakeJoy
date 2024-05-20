@@ -11,4 +11,24 @@
     color: #ffc107; /* Kolor gwiazdek */
     font-size: 24px; /* Rozmiar gwiazdek */
   }
-  
+
+.submit-toast {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-toast p {
+    margin-left: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Ukrywanie ikony SVG w powiadomieniach Toastify */
+.Toastify .Toastify__toast-icon {
+    display: none;
+}
+
+
+
+

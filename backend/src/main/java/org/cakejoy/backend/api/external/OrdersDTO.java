@@ -22,10 +22,10 @@ public class OrdersDTO {
     private String category;
     private String state;
     private Integer score;
+    private Integer userId;
     private Set<String> flavours = new HashSet<>();
     private Set<String> additionalOptions = new HashSet<>();
     private Set<String> glazes = new HashSet<>();
-//    private Set<OrderUserDTO> orderUsers = new HashSet<>();
     private Set<String> decorations = new HashSet<>();
     private Set<String> sprinkles = new HashSet<>();
 

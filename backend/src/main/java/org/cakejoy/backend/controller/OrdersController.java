@@ -15,18 +15,11 @@ import java.util.List;
 public class OrdersController {
 
     private final OrdersService ordersService;
-    private final DecorationService decorationsService;
 
     @GetMapping
     public List<OrdersDTO> getOrders() {
         return (ordersService.getAllOrders());
     }
-
-//    @GetMapping("/{orderId}/decorations")
-//    public ResponseEntity<List<DecorationDTO>> getOrderDecorations(@PathVariable Integer orderId) {
-//        List<DecorationDTO> decorations = decorationsService.getDecorationsForOrder(orderId);
-//        return ResponseEntity.ok(decorations);
-//    }
 
     @PostMapping("/submit")
     public ResponseEntity<String> submitOrder(@RequestBody OrdersDTO orderRequestDTO) {
@@ -36,7 +29,41 @@ public class OrdersController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error submitting order: " + e.getMessage());
         }
+    }
 
+    @GetMapping("/{orderId}")
+    public OrdersDTO getOrderInfo(@PathVariable Integer orderId) {
+        return ordersService.getOrderInfo(orderId);
+    }
+
+    @GetMapping("/{orderId}/state")
+    public String getOrderState(@PathVariable Integer orderId) {
+        return ordersService.getOrderState(orderId);
+    }
+
+    @PostMapping("/{orderId}/state")
+    public ResponseEntity<String> setOrderState(@PathVariable Integer orderId, @RequestBody StateDTO stateDTO) {
+        try {
+            ordersService.setOrderState(orderId, stateDTO);
+            return ResponseEntity.ok("Order's state submitted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error submitting state: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/{orderId}/score")
+    public Integer getOrderScore(@PathVariable Integer orderId) {
+        return ordersService.getOrderScore(orderId);
+    }
+
+    @PostMapping("/{orderId}/score")
+    public ResponseEntity<String> setOrderScore(@PathVariable Integer orderId, @RequestBody ScoreDTO scoreDTO) {
+        try {
+            ordersService.setOrderScore(orderId, scoreDTO);
+            return ResponseEntity.ok("Order's score submitted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error submitting score: " + e.getMessage());
+        }
     }
 
 }

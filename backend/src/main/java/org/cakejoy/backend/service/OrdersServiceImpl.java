@@ -8,6 +8,7 @@ import org.cakejoy.backend.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +28,8 @@ public class OrdersServiceImpl implements OrdersService {
     private final SprinkleMapper sprinkleMapper;
     private final GlazeOrderRepository glazeOrderRepository;
     private final SprinkleOrderRepository sprinkleOrderRepository;
+    private final UsersRepository usersRepository;
+    private final OrderUserRepository orderUserRepository;
 
     @Override
     public List<OrdersDTO> getAllOrders() {
@@ -37,9 +40,22 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Transactional
     public void submitOrder(OrdersDTO orderRequestDTO) {
+        orderRequestDTO.setState("In preparation");
         Orders order = ordersMapper.map(orderRequestDTO);
 
         ordersRepository.save(order);
+
+        Users user = usersRepository.findById(orderRequestDTO.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        OrderUser orderUser = new OrderUser();
+        orderUser.setOrder(order);
+        orderUser.setUser(user);
+        orderUserRepository.save(orderUser);
+
+        Set<OrderUser> orderUsers = new HashSet<>();
+        orderUsers.add(orderUser);
+        order.setOrderUser(orderUsers);
 
         Set<String> selectedDecoration = orderRequestDTO.getDecorations();
         Set<String> selectedAdditionalOptions = orderRequestDTO.getAdditionalOptions();
@@ -60,7 +76,7 @@ public class OrdersServiceImpl implements OrdersService {
             for (String additionalOptionsDTO : selectedAdditionalOptions) {
                 AdditionalOptionsOrder additionalOptionsOrder = new AdditionalOptionsOrder();
                 AdditionalOptions additionalOptions = additionalOptionsMapper.mapToEntity(additionalOptionsDTO);
-                additionalOptionsOrder.setOrder(order);
+                additionalOptionsOrder.setOrders(order);
                 additionalOptionsOrder.setAdditionalOptions(additionalOptions);
                 additionalOptionsOrderRepository.save(additionalOptionsOrder);
             }
@@ -69,7 +85,7 @@ public class OrdersServiceImpl implements OrdersService {
             for (String flavourDTO : selectedFlavours) {
                 FlavourOrder flavourOrder = new FlavourOrder();
                 Flavour flavour = flavourMapper.mapToEntity(flavourDTO);
-                flavourOrder.setOrder(order);
+                flavourOrder.setOrders(order);
                 flavourOrder.setFlavour(flavour);
                 flavourOrderRepository.save(flavourOrder);
             }
@@ -92,5 +108,33 @@ public class OrdersServiceImpl implements OrdersService {
                 sprinkleOrderRepository.save(sprinkleOrder);
             }
         }
+    }
+
+    @Override
+    public OrdersDTO getOrderInfo(Integer orderId){
+        Orders order = ordersRepository.findOrdersById(orderId);
+        return ordersMapper.map(order);
+    }
+
+    @Override
+    public String getOrderState(Integer orderId){
+        Orders orders = ordersRepository.findOrdersById(orderId);
+        return orders.getState();
+    }
+
+    @Override
+    public void setOrderState(Integer orderId, StateDTO stateDTO) {
+        ordersRepository.updateOrderState(orderId, stateDTO.getState());
+    }
+
+    @Override
+    public Integer getOrderScore(Integer orderId) {
+        Orders orders = ordersRepository.findOrdersById(orderId);
+        return orders.getScore();
+    }
+
+    @Override
+    public void setOrderScore(Integer orderId, ScoreDTO scoreDTO) {
+        ordersRepository.updateOrderScore(orderId, scoreDTO.getScore());
     }
 }

@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ButtonSign from '../components/ButtonSign';
 import PrimaryButton from '../components/PrimaryButton';
 import './MyOrders.css'; // Importowanie stylów dla MyOrders
+import axios from '../../axiosConfig';
 
 function MyOrders() {
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        fetchOrders();
+    }, []);
+
+    const fetchOrders = async () => {
+        try {
+            const response = await axios.get('/api/orders/user', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            setOrders(response.data);
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+        }
+    };
+
     return (
         <div className="con">
             <Navbar />
@@ -21,9 +41,13 @@ function MyOrders() {
                 </header>
                 <hr className="separator" />
                 <div className="orders-container">
-                    <div className="order">
-                        <ButtonSign color="lightPink" className="order-detail" redirectTo="/order">Order nr: - Category: -</ButtonSign>
-                    </div>
+                    {orders.map(order => (
+                        <div key={order.id} className="order">
+                            <ButtonSign color="lightPink" className="order-detail" redirectTo={`/order/${order.id}`}>
+                                Order nr: {order.id} - Category: {order.category}
+                            </ButtonSign>
+                        </div>
+                    ))}
                 </div>
             </div>
             <Footer />

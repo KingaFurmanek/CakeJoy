@@ -36,8 +36,8 @@ function ClientsOrders() {
                 <div className="orders-container">
                     {orders.map(order => (
                         <div className="order" key={order.id}>
-                            <ButtonSign color="lightPink" className="order-detail" redirectTo={`/clientOrder`}>
-                                Order nr: {order.id}, Category: {order.category.name}
+                            <ButtonSign color="lightPink" className="order-detail" redirectTo={`/clientOrder/${order.id}`}>
+                                Order nr: {order.id}, Category: {order.category}
                             </ButtonSign>
                         </div>
                     ))}

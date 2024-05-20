@@ -15,12 +15,11 @@ import lombok.experimental.Accessors;
 public class AdditionalOptionsOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "additional_option_order_id")
     private Integer id;
-
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Orders order;
-
+    private Orders orders;
     @ManyToOne
     @JoinColumn(name = "additional_option_id")
     private AdditionalOptions additionalOptions;

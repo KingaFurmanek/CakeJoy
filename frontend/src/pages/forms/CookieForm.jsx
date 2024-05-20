@@ -1,13 +1,11 @@
-// CookieForm.jsx
-
-import React, {useEffect, useState} from 'react';
-import './CookieForm.css'; // Importujemy plik ze stylami
-import Input from '../../components/Input'; // Import komponentu Input
+import React, { useEffect, useState } from 'react';
+import './Forms.css';
+import Input from '../../components/Input';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import PrimaryButton from '../../components/PrimaryButton';
 import Checkbox from '../../components/Checkbox';
-import { CategoryProvider, useCategory } from '../../components/CategoryContext.jsx';
+import { useCategory } from '../../components/CategoryContext.jsx';
 import axios from '../../../axiosConfig';
 
 function CookieForm() {
@@ -20,8 +18,29 @@ function CookieForm() {
         additionalOptions: [],
         date: '',
         additionalInfo: '',
+        userId: '',
         category: chosenCategory
     });
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get('/api/users/info', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const userData = response.data;
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    userId: userData.id
+                }));
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+        fetchUserData();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -50,8 +69,8 @@ function CookieForm() {
     return (
         <div className="con">
             <Navbar />
-            <div className="cookieForm-container">
-                <form className="cookieForm" onSubmit={handleSubmit}>
+            <div className="form-container">
+                <form className="form-details" onSubmit={handleSubmit}>
                     <Input label="Quantity (kg)" name="quantity" type="number" id="quantity" value={formData.quantity} onChange={handleChange} />
                     <p> Filling Type (max. 3)</p>
                     <div className="custom-checkboxes">
@@ -72,11 +91,12 @@ function CookieForm() {
                     <p>Additional Options</p>
                     <div className="custom-checkboxes">
                         <Checkbox id="icing" label="Icing" value="icing" name="additionalOptions" checked={formData.additionalOptions.includes('icing')} onChange={handleCheckboxChange} />
-                        <Checkbox id="powdered_sugar" label="Powdered Sugar" value="powdered_sugar" name="additionalOptions" checked={formData.additionalOptions.includes('powdered_sugar')} onChange={handleCheckboxChange} />
+                        <Checkbox id="powdered sugar" label="Powdered Sugar" value="powdered sugar" name="additionalOptions" checked={formData.additionalOptions.includes('powdered sugar')} onChange={handleCheckboxChange} />
+                        <Checkbox id="none" label="None" value="none" name="additionalOptions" checked={formData.additionalOptions.includes('none')} onChange={handleCheckboxChange} />
                     </div>
                     <Input label="Delivery Date" name="date" type="text" id="deliveryDate" value={formData.date} onChange={handleChange} />
                     <Input label="Additional Info" name="additionalInfo" type="text" id="additionalInfo" value={formData.additionalInfo} onChange={handleChange} />
-                    <PrimaryButton type="submit" color="blue" redirectTo="/deliveryAddress">Next</PrimaryButton>
+                    <PrimaryButton type="submit" color="blue" redirectTo="/success">Next</PrimaryButton>
                 </form>
                 <Footer />
             </div>
