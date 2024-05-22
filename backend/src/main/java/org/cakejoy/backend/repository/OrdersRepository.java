@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
-    @Query("SELECT o FROM Orders o JOIN FETCH o.category")
+    @Query("SELECT o FROM Orders o JOIN FETCH o.category ORDER BY o.id DESC")
     List<Orders> findAllWithCategory();
 
     @Modifying
@@ -27,4 +27,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
     void updateOrderScore(@Param("orderId") Integer orderId, @Param("score") Integer score);
 
     Orders findOrdersById(Integer orderId);
+
+    @Query("SELECT o FROM Orders o WHERE CAST(o.id AS string)=:query OR o.category.name=:query")
+    List<Orders> findByIdContainingOrCategory_NameContaining(@Param("query") String query);
 }

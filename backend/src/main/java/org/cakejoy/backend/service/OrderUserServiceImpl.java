@@ -11,6 +11,7 @@ import org.cakejoy.backend.repository.OrderUserRepository;
 import org.cakejoy.backend.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,7 +31,7 @@ public class OrderUserServiceImpl implements OrderUserService {
         Users user = usersRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
 
-        Set<OrderUser> orderUsers = orderUserRepository.findByUser(user);
+        List<OrderUser> orderUsers = orderUserRepository.findByUser(user);
 
         return orderUsers.stream()
                 .map(orderUser -> {

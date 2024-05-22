@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -136,5 +137,13 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public void setOrderScore(Integer orderId, ScoreDTO scoreDTO) {
         ordersRepository.updateOrderScore(orderId, scoreDTO.getScore());
+    }
+
+    @Override
+    public List<OrdersDTO> searchOrders(String query) {
+        List<Orders> searchResults = ordersRepository.findByIdContainingOrCategory_NameContaining(query);
+        return searchResults.stream()
+                .map(ordersMapper::map)
+                .collect(Collectors.toList());
     }
 }

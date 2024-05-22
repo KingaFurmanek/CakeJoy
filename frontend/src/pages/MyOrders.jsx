@@ -8,6 +8,7 @@ import axios from '../../axiosConfig';
 
 function MyOrders() {
     const [orders, setOrders] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         fetchOrders();
@@ -15,7 +16,7 @@ function MyOrders() {
 
     const fetchOrders = async () => {
         try {
-            const response = await axios.get('/api/orders/user', {
+            const response = await axios.get('/api/orders/user?sort=desc', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -23,6 +24,24 @@ function MyOrders() {
             setOrders(response.data);
         } catch (error) {
             console.error('Error fetching orders:', error);
+        }
+    };
+
+    const handleSearch = async () => {
+        if (searchQuery.trim() === '') {
+            fetchOrders();
+            return;
+        }
+
+        try {
+            const response = await axios.get(`/api/search?query=${searchQuery}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            setOrders(response.data);
+        } catch (error) {
+            console.error('Error searching orders:', error);
         }
     };
 
@@ -35,8 +54,16 @@ function MyOrders() {
                 </div>
                 <header>
                     <div className="search-bar">
-                        <input type="text" id="searchInput" placeholder="Search orders..." />
-                        <PrimaryButton type="button" color="blue">Search</PrimaryButton>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search orders..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <PrimaryButton type="button" color="blue" onClick={handleSearch}>
+                            Search
+                        </PrimaryButton>
                     </div>
                 </header>
                 <hr className="separator" />

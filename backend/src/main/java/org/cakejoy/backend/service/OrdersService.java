@@ -15,4 +15,5 @@ public interface OrdersService {
     void setOrderState(Integer orderId, StateDTO stateDTO);
     Integer getOrderScore(Integer orderId);
     void setOrderScore(Integer orderId, ScoreDTO scoreDTO);
+    List<OrdersDTO> searchOrders(String query);
 }
