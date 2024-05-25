@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    bottom: 20%; /* Ustawiamy odstęp od dolnej krawędzi strony */
-    left: 50%; /* Ustawiamy poziome wycentrowanie */
+    bottom: 20%;
+    left: 50%;
     font-family: 'Montserrat', sans-serif;
     font-size: 25px;
     gap: 10px;
@@ -20,22 +20,22 @@
 }
 
 label {
-    color: #63565C; /* Kolor napisu */
+    color: #63565C;
 }
 
 select {
-    width: 200px; /* Zwiększamy szerokość dropdowna */
+    width: 200px;
     padding: 10px;
-    margin-top: 5px; /* Dodajemy odstęp od góry */
-    border: 1px solid #BDBDBD; /* Dodajemy szarą obramówkę */
-    border-radius: 5px; /* Zaokrąglamy rogi */
+    margin-top: 5px;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     margin-bottom: 10%;
 }
 
 .order-container {
-    height: calc(100vh - 20%);
+    height: 100%;
     overflow-y: auto;
     display: flex;
     justify-content: flex-start;
@@ -74,4 +74,23 @@ select {
     background-color: #fffdfd;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media(max-width: 600px){
+
+    .order-number{
+        width: 60%;
+    }
+
+    .description-container{
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        width:90%;
+
+    }
+
+    .order-tracker {
+        width: 100%;
+    }
 }

@@ -11,6 +11,7 @@ import cookies from '../assets/cookies_category.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCategory } from '../components/CategoryContext';
+import MobileFooter from "../components/MobileFooter.jsx";
 
 const ChooseCategory = () => {
     const { setChosenCategory } = useCategory();
@@ -28,18 +29,21 @@ const ChooseCategory = () => {
 
     return (
         <div className="con">
-            <Navbar />
+            <Navbar/>
             <main className="chooseCategory-container">
                 <h1 className="quote">Choose category</h1>
                 <div className="category-container" id="category-container">
-                    <CategoryItem imgSrc={cupcakes} text="Cupcakes" onCategorySelect={handleCategorySelection} />
-                    <CategoryItem imgSrc={cake} text="Cakes" onCategorySelect={handleCategorySelection} />
-                    <CategoryItem imgSrc={donuts} text="Donuts" onCategorySelect={handleCategorySelection} />
-                    <CategoryItem imgSrc={cookies} text="Cookies" onCategorySelect={handleCategorySelection} />
+                    <CategoryItem imgSrc={cupcakes} text="Cupcakes" onCategorySelect={handleCategorySelection}/>
+                    <CategoryItem imgSrc={cake} text="Cakes" onCategorySelect={handleCategorySelection}/>
+                    <CategoryItem imgSrc={donuts} text="Donuts" onCategorySelect={handleCategorySelection}/>
+                    <CategoryItem imgSrc={cookies} text="Cookies" onCategorySelect={handleCategorySelection}/>
                 </div>
                 <PrimaryButton type="button" color="blue" onClick={handleNextClick}>Next</PrimaryButton>
             </main>
-            <Footer />
+            <Footer/>
+            <div className='mobileFooter'>
+                <MobileFooter/>
+            </div>
         </div>
     );
 }

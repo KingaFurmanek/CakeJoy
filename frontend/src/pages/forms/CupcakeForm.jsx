@@ -7,6 +7,7 @@ import PrimaryButton from '../../components/PrimaryButton';
 import Checkbox from '../../components/Checkbox';
 import { useCategory } from '../../components/CategoryContext.jsx';
 import axios from '../../../axiosConfig';
+import MobileFooter from "../../components/MobileFooter.jsx";
 
 function CupcakeForm() {
     const { chosenCategory } = useCategory();
@@ -72,46 +73,80 @@ function CupcakeForm() {
             <Navbar />
             <div className="form-container">
                 <form className="form-details" onSubmit={handleSubmit}>
-                    <Input label="Quantity (kg)" name="quantity" type="number" id="quantity" value={formData.quantity} onChange={handleChange} />
+                    <Input label="Quantity (kg)" name="quantity" type="number" id="quantity" value={formData.quantity}
+                           onChange={handleChange}/>
                     <p> Filling Type (max. 3)</p>
                     <div className="custom-checkboxes">
-                        <Checkbox id="chocolate" label="Chocolate" value="chocolate" name="flavours" checked={formData.flavours.includes('chocolate')} onChange={handleCheckboxChange} />
-                        <Checkbox id="strawberry" label="Strawberry" value="strawberry" name="flavours" checked={formData.flavours.includes('strawberry')} onChange={handleCheckboxChange} />
-                        <Checkbox id="banana" label="Banana" value="banana" name="flavours" checked={formData.flavours.includes('banana')} onChange={handleCheckboxChange} />
-                        <Checkbox id="nutella" label="Nutella" value="nutella" name="flavours" checked={formData.flavours.includes('nutella')} onChange={handleCheckboxChange} />
-                        <Checkbox id="lemon" label="Lemon" value="lemon" name="flavours" checked={formData.flavours.includes('lemon')} onChange={handleCheckboxChange} />
-                        <Checkbox id="coconut" label="Coconut" value="coconut" name="flavours" checked={formData.flavours.includes('coconut')} onChange={handleCheckboxChange} />
-                        <Checkbox id="caramel" label="Caramel" value="caramel" name="flavours" checked={formData.flavours.includes('caramel')} onChange={handleCheckboxChange} />
-                        <Checkbox id="blueberry" label="Blueberry" value="blueberry" name="flavours" checked={formData.flavours.includes('blueberry')} onChange={handleCheckboxChange} />
-                        <Checkbox id="almond" label="Almond" value="almond" name="flavours" checked={formData.flavours.includes('almond')} onChange={handleCheckboxChange} />
-                        <Checkbox id="raspberry" label="Raspberry" value="raspberry" name="flavours" checked={formData.flavours.includes('raspberry')} onChange={handleCheckboxChange} />
-                        <Checkbox id="cherry" label="Cherry" value="cherry" name="flavours" checked={formData.flavours.includes('cherry')} onChange={handleCheckboxChange} />
-                        <Checkbox id="vanilla" label="Vanilla" value="vanilla" name="flavours" checked={formData.flavours.includes('vanilla')} onChange={handleCheckboxChange} />
+                        <Checkbox id="chocolate" label="Chocolate" value="chocolate" name="flavours"
+                                  checked={formData.flavours.includes('chocolate')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="strawberry" label="Strawberry" value="strawberry" name="flavours"
+                                  checked={formData.flavours.includes('strawberry')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="banana" label="Banana" value="banana" name="flavours"
+                                  checked={formData.flavours.includes('banana')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="nutella" label="Nutella" value="nutella" name="flavours"
+                                  checked={formData.flavours.includes('nutella')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="lemon" label="Lemon" value="lemon" name="flavours"
+                                  checked={formData.flavours.includes('lemon')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="coconut" label="Coconut" value="coconut" name="flavours"
+                                  checked={formData.flavours.includes('coconut')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="caramel" label="Caramel" value="caramel" name="flavours"
+                                  checked={formData.flavours.includes('caramel')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="blueberry" label="Blueberry" value="blueberry" name="flavours"
+                                  checked={formData.flavours.includes('blueberry')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="almond" label="Almond" value="almond" name="flavours"
+                                  checked={formData.flavours.includes('almond')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="raspberry" label="Raspberry" value="raspberry" name="flavours"
+                                  checked={formData.flavours.includes('raspberry')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="cherry" label="Cherry" value="cherry" name="flavours"
+                                  checked={formData.flavours.includes('cherry')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="vanilla" label="Vanilla" value="vanilla" name="flavours"
+                                  checked={formData.flavours.includes('vanilla')} onChange={handleCheckboxChange}/>
                     </div>
-                    <Input label="Main Colors" name="colours" type="text" id="colours" value={formData.colours} onChange={handleChange} />
+                    <Input label="Main Colors" name="colours" type="text" id="colours" value={formData.colours}
+                           onChange={handleChange}/>
                     <p> Sprinkles</p>
                     <div className="custom-checkboxes">
-                        <Checkbox id="chocolate" label="Chocolate" value="chocolate" name="sprinkles" checked={formData.sprinkles.includes('chocolate')} onChange={handleCheckboxChange} />
-                        <Checkbox id="popping" label="Popping" value="popping" name="sprinkles" checked={formData.sprinkles.includes('popping')} onChange={handleCheckboxChange} />
-                        <Checkbox id="colorful" label="Colorful" value="colorful" name="sprinkles" checked={formData.sprinkles.includes('colorful')} onChange={handleCheckboxChange} />
-                        <Checkbox id="fruity" label="Fruity" value="fruity" name="sprinkles" checked={formData.sprinkles.includes('fruity')} onChange={handleCheckboxChange} />
-                        <Checkbox id="none" label="None" value="none" name="sprinkles" checked={formData.sprinkles.includes('none')} onChange={handleCheckboxChange} />
+                        <Checkbox id="chocolate" label="Chocolate" value="chocolate" name="sprinkles"
+                                  checked={formData.sprinkles.includes('chocolate')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="popping" label="Popping" value="popping" name="sprinkles"
+                                  checked={formData.sprinkles.includes('popping')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="colorful" label="Colorful" value="colorful" name="sprinkles"
+                                  checked={formData.sprinkles.includes('colorful')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="fruity" label="Fruity" value="fruity" name="sprinkles"
+                                  checked={formData.sprinkles.includes('fruity')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="none" label="None" value="none" name="sprinkles"
+                                  checked={formData.sprinkles.includes('none')} onChange={handleCheckboxChange}/>
                     </div>
                     <p>Additional Options</p>
                     <div className="custom-checkboxes">
-                        <Checkbox id="icing" label="Icing" value="icing" name="additionalOptions" checked={formData.additionalOptions.includes('icing')} onChange={handleCheckboxChange} />
-                        <Checkbox id="powdered sugar" label="Powdered Sugar" value="powdered_sugar" name="additionalOptions" checked={formData.additionalOptions.includes('powdered_sugar')} onChange={handleCheckboxChange} />
-                        <Checkbox id="buttercream frosting" label="Buttercream Frosting" value="buttercream frosting" name="additionalOptions" checked={formData.additionalOptions.includes('buttercream frosting')} onChange={handleCheckboxChange} />
-                        <Checkbox id="none" label="None" value="none" name="additionalOptions" checked={formData.additionalOptions.includes('none')} onChange={handleCheckboxChange} />
+                        <Checkbox id="icing" label="Icing" value="icing" name="additionalOptions"
+                                  checked={formData.additionalOptions.includes('icing')}
+                                  onChange={handleCheckboxChange}/>
+                        <Checkbox id="powdered sugar" label="Powdered Sugar" value="powdered_sugar"
+                                  name="additionalOptions"
+                                  checked={formData.additionalOptions.includes('powdered_sugar')}
+                                  onChange={handleCheckboxChange}/>
+                        <Checkbox id="buttercream frosting" label="Buttercream Frosting" value="buttercream frosting"
+                                  name="additionalOptions"
+                                  checked={formData.additionalOptions.includes('buttercream frosting')}
+                                  onChange={handleCheckboxChange}/>
+                        <Checkbox id="none" label="None" value="none" name="additionalOptions"
+                                  checked={formData.additionalOptions.includes('none')}
+                                  onChange={handleCheckboxChange}/>
                     </div>
-                    <Input label="Delivery Date" name="date" type="text" id="deliveryDate" value={formData.date} onChange={handleChange} />
-                    <Input label="Additional Info" name="additionalInfo" type="text" id="additionalInfo" value={formData.additionalInfo} onChange={handleChange} />
+                    <Input label="Delivery Date" name="date" type="text" id="deliveryDate" value={formData.date}
+                           onChange={handleChange}/>
+                    <Input label="Additional Info" name="additionalInfo" type="text" id="additionalInfo"
+                           value={formData.additionalInfo} onChange={handleChange}/>
                     <PrimaryButton type="submit" color="blue" redirectTo="/success">Next</PrimaryButton>
                 </form>
-                <Footer />
+                <Footer/>
+                <div className='mobileFooter'>
+                    <MobileFooter/>
+                </div>
             </div>
         </div>
-);
+    );
 }
 
 export default CupcakeForm;

@@ -7,6 +7,7 @@ import PrimaryButton from '../../components/PrimaryButton';
 import Checkbox from '../../components/Checkbox';
 import { useCategory } from '../../components/CategoryContext.jsx';
 import axios from '../../../axiosConfig';
+import MobileFooter from "../../components/MobileFooter.jsx";
 
 function CakeForm() {
     const { chosenCategory } = useCategory();
@@ -142,6 +143,9 @@ function CakeForm() {
                     <PrimaryButton type="submit" color="blue" redirectTo="/success">Next</PrimaryButton>
                 </form>
                 <Footer/>
+                <div className='mobileFooter'>
+                    <MobileFooter/>
+                </div>
             </div>
         </div>
     );

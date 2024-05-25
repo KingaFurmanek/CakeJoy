@@ -6,6 +6,7 @@ import './Order.css'; // Importowanie stylów dla MyOrders
 import OrderTracker from '../components/OrderTracker';
 import RatingComponent from '../components/RatingComponent';
 import axios from '../../axiosConfig';
+import MobileFooter from "../components/MobileFooter.jsx";
 
 function Order({ match }) {
     const [order, setOrder] = useState(null);
@@ -26,12 +27,12 @@ function Order({ match }) {
 
     return (
         <div className="con">
-            <Navbar />
+            <Navbar/>
             <div className="order-container">
                 {order && (
                     <>
-                        <p className='order-number'>Order nr: {order.id},  Category: {order.category}</p>
-                        <hr className="separator" />
+                        <p className='order-number'>Order nr: {order.id}, Category: {order.category}</p>
+                        <hr className="separator"/>
                         <div className="description-container">
                             {order.occasion && <p>Occasion: {order.occasion}</p>}
                             <p>Quantity: {order.quantity}</p>
@@ -40,17 +41,21 @@ function Order({ match }) {
                             <p>Additional Info: {order.additionalInfo}</p>
                             <p>Colours: {order.colours}</p>
                             {order.tiers && <p>Tiers: {order.tiers}</p>}
-                            {order.additionalOptions.length > 0 && <p>Additional Options: {order.additionalOptions.join(', ')}</p>}
+                            {order.additionalOptions.length > 0 &&
+                                <p>Additional Options: {order.additionalOptions.join(', ')}</p>}
                             {order.glazes.length > 0 && <p>Glazes: {order.glazes.join(', ')}</p>}
                             {order.decorations.length > 0 && <p>Decorations: {order.decorations.join(', ')}</p>}
                             {order.sprinkles.length > 0 && <p>Sprinkles: {order.sprinkles.join(', ')}</p>}
                         </div>
-                        <OrderTracker />
-                        <RatingComponent />
+                        <OrderTracker/>
+                        <RatingComponent/>
                     </>
                 )}
             </div>
-            <Footer />
+            <Footer/>
+            <div className='mobileFooter'>
+                <MobileFooter/>
+            </div>
         </div>
     );
 }

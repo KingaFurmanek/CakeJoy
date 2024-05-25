@@ -9,6 +9,7 @@ import {ToastContainer, toast, Slide} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Lottie from 'react-lottie';
 import submitAnimation from '../animations/submit.json';
+import MobileBakerFooter from "../components/MobileBakerFooter.jsx";
 
 function Order() {
     const [status, setStatus] = useState('In preparation');
@@ -79,12 +80,12 @@ function Order() {
 
     return (
         <div className="con">
-            <BakerNavbar />
+            <BakerNavbar/>
             <div className="order-container">
                 {order && (
                     <>
                         <p className='order-number'>Order nr: {order.id}, Category: {order.category}</p>
-                        <hr className="separator" />
+                        <hr className="separator"/>
                         <div className="description-container">
                             {order.occasion && <p>Occasion: {order.occasion}</p>}
                             <p>Quantity: {order.quantity}</p>
@@ -95,7 +96,8 @@ function Order() {
                             {order.tiers && <p>Tiers: {order.tiers}</p>}
                             {order.state && <p>State: {order.state}</p>}
                             {order.score && <p>Score: {order.score}</p>}
-                            {order.additionalOptions.length > 0 && <p>Additional Options: {order.additionalOptions.join(', ')}</p>}
+                            {order.additionalOptions.length > 0 &&
+                                <p>Additional Options: {order.additionalOptions.join(', ')}</p>}
                             {order.glazes.length > 0 && <p>Glazes: {order.glazes.join(', ')}</p>}
                             {order.decorations.length > 0 && <p>Decorations: {order.decorations.join(', ')}</p>}
                             {order.sprinkles.length > 0 && <p>Sprinkles: {order.sprinkles.join(', ')}</p>}
@@ -114,10 +116,13 @@ function Order() {
                     </>
                 )}
             </div>
-            <Footer />
+            <Footer/>
             <ToastContainer
                 transition={Slide}
             />
+            <div className='mobileFooter'>
+                <MobileBakerFooter/>
+            </div>
         </div>
     );
 }

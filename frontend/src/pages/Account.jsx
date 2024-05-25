@@ -7,6 +7,7 @@ import './Account.css';
 import userImg from '../assets/login.svg';
 import axios from "../../axiosConfig.js";
 import {useNavigate} from "react-router-dom";
+import MobileFooter from "../components/MobileFooter.jsx";
 
 function Account() {
 
@@ -19,13 +20,13 @@ function Account() {
 
     return (
         <div className="con">
-            <Navbar />
+            <Navbar/>
             <div className="account-container">
                 <form action="account" className="login" method="POST" encType="multipart/form-data">
-                    <img src={userImg} alt="User Image" />
+                    <img src={userImg} alt="User Image"/>
                     <p>Login</p>
                     <div className="file-label">
-                        <input type="file" name="file" />
+                        <input type="file" name="file"/>
                     </div>
                 </form>
                 <div className="data-container">
@@ -34,7 +35,10 @@ function Account() {
                     <ButtonSign color="lightPink" onClick={handleLogout}>Log out</ButtonSign>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
+            <div className='mobileFooter'>
+                <MobileFooter/>
+            </div>
         </div>
     );
 }

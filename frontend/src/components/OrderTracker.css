@@ -49,3 +49,16 @@
     background-color: #ccc;
     margin: 0 5px;
 }
+
+@media (max-width: 600px){
+.progress-bar{
+    width:inherit;
+}
+
+
+
+    .progress-line{
+        display: none;
+        overflow: hidden;
+    }
+}

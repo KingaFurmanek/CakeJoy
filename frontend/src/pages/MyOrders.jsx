@@ -5,6 +5,7 @@ import ButtonSign from '../components/ButtonSign';
 import PrimaryButton from '../components/PrimaryButton';
 import './MyOrders.css'; // Importowanie stylów dla MyOrders
 import axios from '../../axiosConfig';
+import MobileFooter from "../components/MobileFooter.jsx";
 
 function MyOrders() {
     const [orders, setOrders] = useState([]);
@@ -47,7 +48,7 @@ function MyOrders() {
 
     return (
         <div className="con">
-            <Navbar />
+            <Navbar/>
             <div className="myOrders-container">
                 <div className="quote">
                     <p>My Orders</p>
@@ -66,7 +67,7 @@ function MyOrders() {
                         </PrimaryButton>
                     </div>
                 </header>
-                <hr className="separator" />
+                <hr className="separator"/>
                 <div className="orders-container">
                     {orders.map(order => (
                         <div key={order.id} className="order">
@@ -77,7 +78,10 @@ function MyOrders() {
                     ))}
                 </div>
             </div>
-            <Footer />
+            <Footer/>
+            <div className='mobileFooter'>
+                <MobileFooter/>
+            </div>
         </div>
     );
 }

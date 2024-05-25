@@ -5,6 +5,8 @@ import './AccountBaker.css';
 import userImg from '../assets/login.svg';
 import BakerNavbar from '../components/BakerNavbar';
 import {useNavigate} from "react-router-dom";
+import MobileFooter from "../components/MobileFooter.jsx";
+import MobileBakerFooter from "../components/MobileBakerFooter.jsx";
 
 function AccountBaker() {
     const navigate = useNavigate();
@@ -19,10 +21,10 @@ function AccountBaker() {
             <BakerNavbar/>
             <div className="account-container">
                 <form action="account" className="login" method="POST" encType="multipart/form-data">
-                    <img src={userImg} alt="User Image" />
+                    <img src={userImg} alt="User Image"/>
                     <p>Baker</p>
                     <div className="file-label">
-                        <input type="file" name="file" />
+                        <input type="file" name="file"/>
                     </div>
                 </form>
                 <div className="data-container-baker">
@@ -30,7 +32,10 @@ function AccountBaker() {
                     <ButtonSign color="lightPink" onClick={handleLogout}>Log out</ButtonSign>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
+            <div className='mobileFooter'>
+                <MobileBakerFooter/>
+            </div>
         </div>
     );
 }

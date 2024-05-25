@@ -3,25 +3,26 @@ import './MobileFooter.css';
 import dashboardIcon from "../assets/home_media_button.svg"
 import orderIcon from "../assets/order_media_button.svg"
 import accountIcon from "../assets/account_media_button.svg"
+import {Link} from "react-router-dom";
 
 const MobileFooter = () => {
     return (
         <footer className="media-footer">
-            <a className='media-buttons' href="dashboard">
-                <button className="home-button">
+            <Link className='media-buttons' to="/dashboard">
+                <a className="home-button">
                     <img src={dashboardIcon} alt="Home" />
-                </button>
-            </a>
-            <a className='media-buttons' href="chooseCategory">
-                <button className="order-media-button">
+                </a>
+            </Link>
+            <Link className='media-buttons' to="/chooseCategory">
+                <a className="order-media-button">
                     <img src={orderIcon} alt="Order" />
-                </button>
-            </a>
-            <a className='media-buttons' href="account">
-                <button className="account-button">
+                </a>
+            </Link>
+            <Link className='media-buttons' to="/account">
+                <a className="account-button">
                     <img src={accountIcon} alt="Account" />
-                </button>
-            </a>
+                </a>
+            </Link>
         </footer>
     );
 }

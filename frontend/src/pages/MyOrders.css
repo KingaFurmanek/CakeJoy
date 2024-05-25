@@ -43,3 +43,14 @@
 .order{
     width: 100%;
 }
+
+@media(max-width: 600px){
+
+    #searchInput{
+        margin-bottom: 4px;
+    }
+
+    .orders-container{
+        width:80%;
+    }
+}

@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import './MyAddress.css';
 import PrimaryButton from '../components/PrimaryButton';
 import axios from '../../axiosConfig';
+import MobileFooter from "../components/MobileFooter.jsx";
 
 const MyAddress = () => {
     const [isEditing, setIsEditing] = useState(false);
@@ -62,7 +63,7 @@ const MyAddress = () => {
 
     return (
         <div className="con">
-            <Navbar />
+            <Navbar/>
             <div className="address-container">
                 <div className="quote">
                     <p>My Address</p>
@@ -72,24 +73,32 @@ const MyAddress = () => {
                 </div>
                 <div className="address-container-2">
                     <div className="address-box">
-                        Country: {isEditing ? <input className="input-edit" type="text" value={country} onChange={(e) => setCountry(e.target.value)} /> : country}
+                        Country: {isEditing ? <input className="input-edit" type="text" value={country}
+                                                     onChange={(e) => setCountry(e.target.value)}/> : country}
                     </div>
                     <div className="address-box">
-                        Postal Code: {isEditing ? <input className="input-edit" type="text" value={postcode} onChange={(e) => setPostcode(e.target.value)} /> : postcode}
+                        Postal Code: {isEditing ? <input className="input-edit" type="text" value={postcode}
+                                                         onChange={(e) => setPostcode(e.target.value)}/> : postcode}
                     </div>
                     <div className="address-box">
-                        City: {isEditing ? <input className="input-edit" type="text" value={city} onChange={(e) => setCity(e.target.value)} /> : city}
+                        City: {isEditing ? <input className="input-edit" type="text" value={city}
+                                                  onChange={(e) => setCity(e.target.value)}/> : city}
                     </div>
                     <div className="address-box">
-                        Street: {isEditing ? <input className="input-edit" type="text" value={street} onChange={(e) => setStreet(e.target.value)} /> : street}
+                        Street: {isEditing ? <input className="input-edit" type="text" value={street}
+                                                    onChange={(e) => setStreet(e.target.value)}/> : street}
                     </div>
                     <div className="address-box">
-                        House number/Flat: {isEditing ? <input className="input-edit" type="text" value={number} onChange={(e) => setNumber(e.target.value)} /> : number}
+                        House number/Flat: {isEditing ? <input className="input-edit" type="text" value={number}
+                                                               onChange={(e) => setNumber(e.target.value)}/> : number}
                     </div>
                 </div>
                 {isEditing && <PrimaryButton color="blue" onClick={handleSaveClick}>Save</PrimaryButton>}
             </div>
-            <Footer />
+            <Footer/>
+            <div className='mobileFooter'>
+                <MobileFooter/>
+            </div>
         </div>
     );
 }

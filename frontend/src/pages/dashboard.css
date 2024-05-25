@@ -138,11 +138,15 @@
     }
 
     .mobileFooter{
+        margin-top:10px;
         width: 100vw;
-        height:6%;
-        width: 100vw;
-        position: fixed;
+        height: 8%;
+        position: sticky;
         bottom: 0;
+        display: flex;
+        box-shadow: 1px -2px 14px 0px rgb(0 0 0 / 10%);
+        padding-top:2px;
+        overflow: visible;
     }
 
 }
