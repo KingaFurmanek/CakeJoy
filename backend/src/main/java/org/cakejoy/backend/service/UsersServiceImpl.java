@@ -10,6 +10,7 @@ import org.cakejoy.backend.mapper.UsersMapper;
 import org.cakejoy.backend.repository.AddressRepository;
 import org.cakejoy.backend.repository.UsersRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,7 @@ public class UsersServiceImpl implements UsersService {
     private final UsersMapper usersMapper;
     private final AddressMapper addressMapper;
     private final AddressRepository addressRepository;
+    private final FileStorageService fileStorageService;
 
     @Override
     public AddressDTO getUserAddress(Integer userId) {
@@ -52,6 +54,16 @@ public class UsersServiceImpl implements UsersService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void updateUserPhoto(String email, MultipartFile file) {
+        Users user = usersRepository.findUserByEmail(email).orElse(null);
+        if (user != null) {
+            String filePath = fileStorageService.saveFile(file);
+            user.setImage(filePath);
+            usersRepository.save(user);
+        }
     }
 }
 

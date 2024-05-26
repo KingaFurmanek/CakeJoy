@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.cakejoy.backend.api.internal.Address;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Data
@@ -16,6 +17,6 @@ public class UsersDTO {
     private String name;
     private String surname;
     private String email;
-    private String image;
+    private byte[] image;
     private AddressDTO address;
 }
