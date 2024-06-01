@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.cakejoy.backend.api.external.*;
 import org.cakejoy.backend.api.internal.*;
 import org.cakejoy.backend.mapper.*;
+import org.cakejoy.backend.rabbitmq.NotificationProducer;
 import org.cakejoy.backend.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,18 +21,9 @@ public class OrdersServiceImpl implements OrdersService {
 
     private final OrdersRepository ordersRepository;
     private final OrdersMapper ordersMapper;
-    private final DecorationsOrderRepository decorationsOrderRepository;
-    private final DecorationMapper decorationMapper;
-    private final AdditionalOptionsMapper additionalOptionsMapper;
-    private final AdditionalOptionsOrderRepository additionalOptionsOrderRepository;
-    private final FlavoursOrderRepository flavourOrderRepository;
-    private final FlavoursMapper flavourMapper;
-    private final GlazeMapper glazeMapper;
-    private final SprinkleMapper sprinkleMapper;
-    private final GlazeOrderRepository glazeOrderRepository;
-    private final SprinkleOrderRepository sprinkleOrderRepository;
     private final UsersRepository usersRepository;
     private final OrderUserRepository orderUserRepository;
+    private final NotificationProducer notificationProducer;
 
     @Override
     public List<OrdersDTO> getAllOrders() {
@@ -40,11 +33,9 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Transactional
-    public void submitOrder(OrdersDTO orderRequestDTO) {
+    public Integer submitOrder(OrdersDTO orderRequestDTO) throws ParseException {
         orderRequestDTO.setState("In preparation");
         Orders order = ordersMapper.map(orderRequestDTO);
-
-        ordersRepository.save(order);
 
         Users user = usersRepository.findById(orderRequestDTO.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -58,57 +49,9 @@ public class OrdersServiceImpl implements OrdersService {
         orderUsers.add(orderUser);
         order.setOrderUser(orderUsers);
 
-        Set<String> selectedDecoration = orderRequestDTO.getDecorations();
-        Set<String> selectedAdditionalOptions = orderRequestDTO.getAdditionalOptions();
-        Set<String> selectedFlavours = orderRequestDTO.getFlavours();
-        Set<String> selectedGlazes = orderRequestDTO.getGlazes();
-        Set<String> selectedSprinkles = orderRequestDTO.getSprinkles();
+        ordersRepository.save(order);
 
-        if (!selectedDecoration.isEmpty()) {
-            for (String decorationDTO : selectedDecoration) {
-                DecorationsOrder decorationsOrder = new DecorationsOrder();
-                Decoration decoration = decorationMapper.mapToEntity(decorationDTO);
-                decorationsOrder.setOrders(order);
-                decorationsOrder.setDecoration(decoration);
-                decorationsOrderRepository.save(decorationsOrder);
-            }
-        }
-        if (!selectedAdditionalOptions.isEmpty()) {
-            for (String additionalOptionsDTO : selectedAdditionalOptions) {
-                AdditionalOptionsOrder additionalOptionsOrder = new AdditionalOptionsOrder();
-                AdditionalOptions additionalOptions = additionalOptionsMapper.mapToEntity(additionalOptionsDTO);
-                additionalOptionsOrder.setOrders(order);
-                additionalOptionsOrder.setAdditionalOptions(additionalOptions);
-                additionalOptionsOrderRepository.save(additionalOptionsOrder);
-            }
-        }
-        if (!selectedFlavours.isEmpty()) {
-            for (String flavourDTO : selectedFlavours) {
-                FlavourOrder flavourOrder = new FlavourOrder();
-                Flavour flavour = flavourMapper.mapToEntity(flavourDTO);
-                flavourOrder.setOrders(order);
-                flavourOrder.setFlavour(flavour);
-                flavourOrderRepository.save(flavourOrder);
-            }
-        }
-        if (!selectedGlazes.isEmpty()) {
-            for (String glazeDTO : selectedGlazes) {
-                GlazeOrder glazeOrder = new GlazeOrder();
-                Glaze glaze = glazeMapper.mapToEntity(glazeDTO);
-                glazeOrder.setOrders(order);
-                glazeOrder.setGlaze(glaze);
-                glazeOrderRepository.save(glazeOrder);
-            }
-        }
-        if (!selectedSprinkles.isEmpty()) {
-            for (String sprinkleDTO : selectedSprinkles) {
-                SprinklesOrder sprinkleOrder = new SprinklesOrder();
-                Sprinkle sprinkle = sprinkleMapper.mapToEntity(sprinkleDTO);
-                sprinkleOrder.setOrders(order);
-                sprinkleOrder.setSprinkle(sprinkle);
-                sprinkleOrderRepository.save(sprinkleOrder);
-            }
-        }
+        return order.getId();
     }
 
     @Override
@@ -125,6 +68,11 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public void setOrderState(Integer orderId, StateDTO stateDTO) {
+        Integer userId = orderUserRepository.findUserIdByOrderId(orderId);
+        String userEmail = usersRepository.findUsersById(userId).getEmail();
+        String stateStr = stateDTO.getState();
+        String message = String.format("OrderId: %d, State: %s, UserEmail: %s", orderId, stateStr, userEmail);
+        notificationProducer.sendNotification(message);
         ordersRepository.updateOrderState(orderId, stateDTO.getState());
     }
 
