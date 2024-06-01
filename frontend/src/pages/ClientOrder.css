@@ -93,4 +93,16 @@ select {
     .order-tracker {
         width: 100%;
     }
+
+    .submit-toast{
+        font-size: 20px !important;
+    }
+
+    .dropdown-menu{
+        width: 100%;
+    }
+
+    .option-status{
+        font-size: 15px;
+    }
 }

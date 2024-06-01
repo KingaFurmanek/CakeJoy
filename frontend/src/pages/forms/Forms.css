@@ -65,12 +65,49 @@
     align-items: flex-start;
 }
 
-@media(max-width: 600px){
+.react-datepicker-wrapper{
+    width: 100% !important;
+}
+
+@media(max-width: 600px) {
     .form-details p {
         font-size: 22px;
     }
 
+    .react-datepicker__month-container {
+        font-size: 14px !important;
+        width: 300px;
+    }
 
+    .react-datepicker{
+        margin-left: 40px !important;
+
+    }
+    .react-datepicker__month-container .react-datepicker__current-month,
+    .react-datepicker__month-container .react-datepicker-time__header,
+    .react-datepicker__month-container .react-datepicker-year-header{
+        font-size: 14px !important;
+    }
+
+    .react-datepicker__day-names .react-datepicker__day-name{
+        font-size: 14px !important;
+    }
+
+    .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        font-size: 14px !important;
+        margin: 0 !important;
+        width: 1rem !important;
+
+    }
+    .react-datepicker__day-names{
+        gap: 5px !important;
+    }
+
+    .react-datepicker__month,
+    .react-datepicker__week{
+        margin: 0 !important;
+        font-size: 10px !important;
+    }
 
 }
 

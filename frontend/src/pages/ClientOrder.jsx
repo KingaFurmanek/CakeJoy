@@ -106,10 +106,10 @@ function Order() {
                         <div className="dropdown-menu">
                             <label htmlFor="status">Select status:</label>
                             <select id="status" value={status} onChange={handleStatusChange}>
-                                <option value="In preparation">In preparation</option>
-                                <option value="Done">Done</option>
-                                <option value="Shipped">Shipped</option>
-                                <option value="Delivered">Delivered</option>
+                                <option className="option-status" value="In preparation">In preparation</option>
+                                <option className="option-status" value="Done">Done</option>
+                                <option className="option-status" value="Shipped">Shipped</option>
+                                <option className="option-status" value="Delivered">Delivered</option>
                             </select>
                             <PrimaryButton color="blue" onClick={handleSubmit}>Submit</PrimaryButton>
                         </div>

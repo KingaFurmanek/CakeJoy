@@ -8,6 +8,8 @@ import Checkbox from '../../components/Checkbox';
 import { useCategory } from '../../components/CategoryContext.jsx';
 import axios from '../../../axiosConfig';
 import MobileFooter from "../../components/MobileFooter.jsx";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function CookieForm() {
     const { chosenCategory } = useCategory();
@@ -23,31 +25,20 @@ function CookieForm() {
         category: chosenCategory
     });
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get('/api/users/info', {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-                const userData = response.data;
-                setFormData((prevFormData) => ({
-                    ...prevFormData,
-                    userId: userData.id
-                }));
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
-        fetchUserData();
-    }, []);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateForm()) {
+            alert('Please fill out all fields');
+            return;
+        }
         try {
-            const response = await axios.post('/api/orders/submit', formData);
+            const response = await axios.post('/api/orders/submit', formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
             console.log('Order submitted successfully:', response.data);
+            window.location.href = '/success';
         } catch (error) {
             console.error('Error submitting order:', error);
         }
@@ -60,11 +51,25 @@ function CookieForm() {
 
     const handleCheckboxChange = (e) => {
         const { name, checked, value } = e.target;
+        let updatedArray = [];
         if (checked) {
-            setFormData({ ...formData, [name]: [...formData[name], value] });
+            if (formData[name].length < (name === 'flavours' ? 3 : 2)) {
+                updatedArray = [...formData[name], value];
+            } else {
+                alert(`You can select maximum ${name === 'flavours' ? '3' : '2'} ${name}`);
+                return;
+            }
         } else {
-            setFormData({ ...formData, [name]: formData[name].filter((item) => item !== value) });
+            updatedArray = formData[name].filter((item) => item !== value);
         }
+
+        setFormData({ ...formData, [name]: updatedArray });
+    };
+
+    const validateForm = () => {
+        const { quantity,flavours, colours, additionalOptions, date, additionalInfo } = formData;
+        return !(!quantity || !colours || !date || !additionalOptions.length || !flavours.length || !additionalInfo);
+
     };
 
     return (
@@ -116,11 +121,18 @@ function CookieForm() {
                                   checked={formData.additionalOptions.includes('none')}
                                   onChange={handleCheckboxChange}/>
                     </div>
-                    <Input label="Delivery Date" name="date" type="text" id="deliveryDate" value={formData.date}
-                           onChange={handleChange}/>
+                    <div className="input-container">
+                        <label className="input-label" htmlFor="deliveryDate">Delivery Date</label>
+                        <DatePicker
+                            selected={formData.date}
+                            onChange={(date) => setFormData({...formData, date})}
+                            dateFormat="yyyy/MM/dd"
+                            className='input-field'
+                        />
+                    </div>
                     <Input label="Additional Info" name="additionalInfo" type="text" id="additionalInfo"
                            value={formData.additionalInfo} onChange={handleChange}/>
-                    <PrimaryButton type="submit" color="blue" redirectTo="/success">Next</PrimaryButton>
+                    <PrimaryButton type="submit" color="blue">Next</PrimaryButton>
                 </form>
                 <Footer/>
                 <div className='mobileFooter'>

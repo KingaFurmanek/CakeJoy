@@ -8,6 +8,7 @@ import Checkbox from '../../components/Checkbox';
 import { useCategory } from '../../components/CategoryContext.jsx';
 import axios from '../../../axiosConfig';
 import MobileFooter from "../../components/MobileFooter.jsx";
+import DatePicker from "react-datepicker";
 
 function DonutForm() {
     const { chosenCategory } = useCategory();
@@ -17,38 +18,27 @@ function DonutForm() {
         flavours: [],
         sprinkles: [],
         colours: '',
-        glaze: [],
+        glazes: [],
         date: '',
         additionalInfo: '',
         userId: '',
         category: chosenCategory
     });
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get('/api/users/info', {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-                const userData = response.data;
-                setFormData((prevFormData) => ({
-                    ...prevFormData,
-                    userId: userData.id
-                }));
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
-        fetchUserData();
-    }, []);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateForm()) {
+            alert('Please fill out all fields');
+            return;
+        }
         try {
-            const response = await axios.post('/api/orders/submit', formData);
+            const response = await axios.post('/api/orders/submit', formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
             console.log('Order submitted successfully:', response.data);
+            window.location.href = '/success';
         } catch (error) {
             console.error('Error submitting order:', error);
         }
@@ -61,11 +51,24 @@ function DonutForm() {
 
     const handleCheckboxChange = (e) => {
         const { name, checked, value } = e.target;
+        let updatedArray = [];
         if (checked) {
-            setFormData({ ...formData, [name]: [...formData[name], value] });
+            if (formData[name].length < (name === 'flavours' ? 3 : 2)) {
+                updatedArray = [...formData[name], value];
+            } else {
+                alert(`You can select maximum ${name === 'flavours' ? '3' : '2'} ${name}`);
+                return;
+            }
         } else {
-            setFormData({ ...formData, [name]: formData[name].filter((item) => item !== value) });
+            updatedArray = formData[name].filter((item) => item !== value);
         }
+
+        setFormData({ ...formData, [name]: updatedArray });
+    };
+
+    const validateForm = () => {
+        const { quantity,flavours, colours, sprinkles, glazes, date, additionalInfo } = formData;
+        return !(!quantity || !colours || !date || !glazes.length || !flavours.length || !additionalInfo || !sprinkles.length);
     };
 
     return (
@@ -106,17 +109,17 @@ function DonutForm() {
                            onChange={handleChange}/>
                     <p>Glaze</p>
                     <div className="custom-checkboxes">
-                        <Checkbox id="chocolate" label="Chocolate" value="chocolate" name="glaze"
-                                  checked={formData.glaze.includes('chocolate')} onChange={handleCheckboxChange}/>
-                        <Checkbox id="strawberry" label="Strawberry" value="strawberry" name="glaze"
-                                  checked={formData.glaze.includes('strawberry')} onChange={handleCheckboxChange}/>
-                        <Checkbox id="caramel" label="Caramel" value="caramel" name="glaze"
-                                  checked={formData.glaze.includes('caramel')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="chocolate" label="Chocolate" value="chocolate" name="glazes"
+                                  checked={formData.glazes.includes('chocolate')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="strawberry" label="Strawberry" value="strawberry" name="glazes"
+                                  checked={formData.glazes.includes('strawberry')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="caramel" label="Caramel" value="caramel" name="glazes"
+                                  checked={formData.glazes.includes('caramel')} onChange={handleCheckboxChange}/>
                         <Checkbox id="chocolate-hazelnut" label="Chocolate-Hazelnut" value="chocolate-hazelnut"
-                                  name="glaze" checked={formData.glaze.includes('chocolate-hazelnut')}
+                                  name="glazes" checked={formData.glazes.includes('chocolate-hazelnut')}
                                   onChange={handleCheckboxChange}/>
-                        <Checkbox id="none" label="None" value="none" name="glaze"
-                                  checked={formData.glaze.includes('none')} onChange={handleCheckboxChange}/>
+                        <Checkbox id="none" label="None" value="none" name="glazes"
+                                  checked={formData.glazes.includes('none')} onChange={handleCheckboxChange}/>
                     </div>
                     <p> Sprinkles</p>
                     <div className="custom-checkboxes">
@@ -131,11 +134,18 @@ function DonutForm() {
                         <Checkbox id="none" label="None" value="none" name="sprinkles"
                                   checked={formData.sprinkles.includes('none')} onChange={handleCheckboxChange}/>
                     </div>
-                    <Input label="Delivery Date" name="date" type="text" id="deliveryDate" value={formData.date}
-                           onChange={handleChange}/>
+                    <div className="input-container">
+                        <label className="input-label" htmlFor="deliveryDate">Delivery Date</label>
+                        <DatePicker
+                            selected={formData.date}
+                            onChange={(date) => setFormData({...formData, date})}
+                            dateFormat="yyyy/MM/dd"
+                            className='input-field'
+                        />
+                    </div>
                     <Input label="Additional Info" name="additionalInfo" type="text" id="additionalInfo"
                            value={formData.additionalInfo} onChange={handleChange}/>
-                    <PrimaryButton type="submit" color="blue" redirectTo="/success">Next</PrimaryButton>
+                    <PrimaryButton type="submit" color="blue">Next</PrimaryButton>
                 </form>
                 <Footer/>
                 <div className='mobileFooter'>
