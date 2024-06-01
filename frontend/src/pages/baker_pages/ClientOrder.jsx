@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import BakerNavbar from '../components/BakerNavbar';
-import Footer from '../components/Footer';
+import BakerNavbar from '../../components/BakerNavbar.jsx';
+import Footer from '../../components/Footer.jsx';
 import './ClientOrder.css';
-import PrimaryButton from '../components/PrimaryButton';
+import PrimaryButton from '../../components/PrimaryButton.jsx';
 import { useParams } from "react-router-dom";
-import axios from "../../axiosConfig.js";
+import axios from "../../../axiosConfig.js";
 import {ToastContainer, toast, Slide} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Lottie from 'react-lottie';
-import submitAnimation from '../animations/submit.json';
-import MobileBakerFooter from "../components/MobileBakerFooter.jsx";
+import submitAnimation from '../../animations/submit.json';
+import MobileBakerFooter from "../../components/MobileBakerFooter.jsx";
 
 function Order() {
     const [status, setStatus] = useState('In preparation');

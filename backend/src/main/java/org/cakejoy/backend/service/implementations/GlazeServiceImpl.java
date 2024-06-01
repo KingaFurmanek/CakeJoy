@@ -1,4 +1,4 @@
-package org.cakejoy.backend.service;
+package org.cakejoy.backend.service.implementations;
 
 import lombok.RequiredArgsConstructor;
 import org.cakejoy.backend.api.external.OrdersDTO;
@@ -8,13 +8,14 @@ import org.cakejoy.backend.api.internal.Orders;
 import org.cakejoy.backend.mapper.GlazeMapper;
 import org.cakejoy.backend.repository.GlazeOrderRepository;
 import org.cakejoy.backend.repository.OrdersRepository;
+import org.cakejoy.backend.service.GlazeService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class GlazeServiceImpl implements GlazeService{
+public class GlazeServiceImpl implements GlazeService {
 
     private final GlazeOrderRepository glazeOrderRepository;
     private final GlazeMapper glazeMapper;

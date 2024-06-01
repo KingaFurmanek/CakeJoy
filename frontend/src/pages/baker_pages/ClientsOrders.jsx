@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import BakerNavbar from '../components/BakerNavbar';
-import Footer from '../components/Footer';
-import ButtonSign from '../components/ButtonSign';
-import PrimaryButton from '../components/PrimaryButton';
+import BakerNavbar from '../../components/BakerNavbar.jsx';
+import Footer from '../../components/Footer.jsx';
+import ButtonSign from '../../components/ButtonSign.jsx';
+import PrimaryButton from '../../components/PrimaryButton.jsx';
 import './ClientsOrders.css';
 import axios from 'axios';
-import MobileBakerFooter from "../components/MobileBakerFooter.jsx";
+import MobileBakerFooter from "../../components/MobileBakerFooter.jsx";
 
 function ClientsOrders() {
     const [orders, setOrders] = useState([]);

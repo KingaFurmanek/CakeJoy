@@ -1,11 +1,11 @@
 import React from 'react';
-import Footer from '../components/Footer';
-import ButtonSign from '../components/ButtonSign';
+import Footer from '../../components/Footer.jsx';
+import ButtonSign from '../../components/ButtonSign.jsx';
 import './AccountBaker.css';
-import userImg from '../assets/login.svg';
-import BakerNavbar from '../components/BakerNavbar';
+import userImg from '../../assets/login.svg';
+import BakerNavbar from '../../components/BakerNavbar.jsx';
 import {useNavigate} from "react-router-dom";
-import MobileBakerFooter from "../components/MobileBakerFooter.jsx";
+import MobileBakerFooter from "../../components/MobileBakerFooter.jsx";
 
 function AccountBaker() {
     const navigate = useNavigate();

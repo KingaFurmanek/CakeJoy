@@ -1,4 +1,4 @@
-package org.cakejoy.backend.service;
+package org.cakejoy.backend.service.implementations;
 
 import lombok.RequiredArgsConstructor;
 import org.cakejoy.backend.api.external.*;
@@ -6,6 +6,7 @@ import org.cakejoy.backend.api.internal.*;
 import org.cakejoy.backend.mapper.*;
 import org.cakejoy.backend.rabbitmq.NotificationProducer;
 import org.cakejoy.backend.repository.*;
+import org.cakejoy.backend.service.OrdersService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

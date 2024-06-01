@@ -1,4 +1,4 @@
-package org.cakejoy.backend.service;
+package org.cakejoy.backend.service.implementations;
 
 import lombok.RequiredArgsConstructor;
 import org.cakejoy.backend.api.external.AuthenticationRequest;
@@ -11,6 +11,8 @@ import org.cakejoy.backend.api.internal.Users;
 import org.cakejoy.backend.mapper.UsersMapper;
 import org.cakejoy.backend.repository.UserRoleRepository;
 import org.cakejoy.backend.repository.UsersRepository;
+import org.cakejoy.backend.service.AuthenticationService;
+import org.cakejoy.backend.service.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
