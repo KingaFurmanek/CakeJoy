@@ -36,9 +36,9 @@ html, body{
 @media (max-width: 600px) {
     .signUp-container {
         background: url("../assets/cake_background.svg");
-        background-size: auto 100%; /* Dopasowuje obrazek do rozmiaru kontenera, zachowując proporcje */
-        background-repeat: no-repeat; /* Wyłącza powtarzanie obrazka */
-        background-position: right 10% center; /* Wyświetla obrazek na prawej stronie kontenera */
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: right 10% center;
     }
 
     .signUpForm {

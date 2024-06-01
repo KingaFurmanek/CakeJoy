@@ -9,12 +9,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class UsersDTO {
+public class UsersRoleDTO {
     private Integer id;
     private String name;
-    private String surname;
-    private String email;
-    private byte[] image;
-    private UsersRoleDTO role;
-    private AddressDTO address;
 }

@@ -1,4 +1,3 @@
-
 .order-tracker {
     text-align: center;
     margin-top: 50px;
@@ -51,11 +50,9 @@
 }
 
 @media (max-width: 600px){
-.progress-bar{
-    width:inherit;
-}
-
-
+    .progress-bar{
+        width:inherit;
+    }
 
     .progress-line{
         display: none;

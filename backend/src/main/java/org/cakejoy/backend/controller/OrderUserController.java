@@ -19,12 +19,11 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class OrderUserController {
 
-    private final OrdersMapper ordersMapper;
     private final UsersService usersService;
     private final OrderUserService orderUserService;
 
     @GetMapping("/user")
-    public ResponseEntity<Set<OrdersDTO>> getUserOrders(Authentication authentication) {
+    public ResponseEntity<List<OrdersDTO>> getUserOrders(Authentication authentication) {
         Users currentUser = (Users) authentication.getPrincipal();
         String userEmail = currentUser.getEmail();
         UsersDTO userDTO = usersService.getUserByEmail(userEmail);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import './Order.css'; // Importowanie stylów dla MyOrders
+import './Order.css';
 import OrderTracker from '../components/OrderTracker';
 import RatingComponent from '../components/RatingComponent';
 import axios from '../../axiosConfig';

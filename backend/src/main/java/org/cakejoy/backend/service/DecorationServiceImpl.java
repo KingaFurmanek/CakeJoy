@@ -1,15 +1,14 @@
 package org.cakejoy.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import org.cakejoy.backend.api.external.DecorationDTO;
-import org.cakejoy.backend.api.external.DecorationsOrderDTO;
-import org.cakejoy.backend.api.internal.DecorationsOrder;
+import org.cakejoy.backend.api.external.OrdersDTO;
+import org.cakejoy.backend.api.internal.*;
 import org.cakejoy.backend.mapper.DecorationMapper;
 import org.cakejoy.backend.repository.DecorationsOrderRepository;
+import org.cakejoy.backend.repository.OrdersRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -17,12 +16,22 @@ public class DecorationServiceImpl implements DecorationService {
 
     private final DecorationsOrderRepository decorationsOrderRepository;
     private final DecorationMapper decorationMapper;
+    private final OrdersRepository ordersRepository;
 
-//    @Override
-//    public List<DecorationDTO> getDecorationsForOrder(Integer orderId) {
-//        List<DecorationsOrder> decorationsOrders = decorationsOrderRepository.findByOrdersId(orderId);
-//        return decorationMapper.mapToDTOList(decorationsOrders);
-//    }
+    @Transactional
+    @Override
+    public void submitDecorations(OrdersDTO orderRequestDTO, Integer orderId) {
+        Orders order = ordersRepository.findOrdersById(orderId);
+        Set<String> selectedDecoration = orderRequestDTO.getDecorations();
 
-
+        if (!selectedDecoration.isEmpty()) {
+            for (String decorationDTO : selectedDecoration) {
+                DecorationsOrder decorationsOrder = new DecorationsOrder();
+                Decoration decoration = decorationMapper.mapToEntity(decorationDTO);
+                decorationsOrder.setOrders(order);
+                decorationsOrder.setDecoration(decoration);
+                decorationsOrderRepository.save(decorationsOrder);
+            }
+        }
+    }
 }

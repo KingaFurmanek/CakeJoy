@@ -2,7 +2,7 @@
 
 .baker-navbar {
     color: #63565C;
-    width: 100%; /* szerokość elementu */
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ButtonSign from '../components/ButtonSign';
 import PrimaryButton from '../components/PrimaryButton';
-import './MyOrders.css'; // Importowanie stylów dla MyOrders
+import './MyOrders.css';
 import axios from '../../axiosConfig';
 import MobileFooter from "../components/MobileFooter.jsx";
 
@@ -17,7 +17,7 @@ function MyOrders() {
 
     const fetchOrders = async () => {
         try {
-            const response = await axios.get('/api/orders/user?sort=desc', {
+            const response = await axios.get('/api/orders/user', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

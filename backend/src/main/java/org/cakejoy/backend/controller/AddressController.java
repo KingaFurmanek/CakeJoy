@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 public class AddressController {
 
     private final UsersService usersService;
-    private final JwtService jwtService;
 
     @GetMapping("/address")
     public ResponseEntity<AddressDTO> getUserAddress(Authentication authentication) {

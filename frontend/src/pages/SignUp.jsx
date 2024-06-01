@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './signUp.css';
-import Input from '../components/Input'; // Import komponentu Input
+import Input from '../components/Input';
 import ButtonSign from '../components/ButtonSign';
 import axios from '../../axiosConfig';
 import {useNavigate} from "react-router-dom";
@@ -32,7 +32,6 @@ const SignUp = () => {
         e.preventDefault();
         try {
             const response = await axios.post('/api/auth/register', formData);
-
             localStorage.setItem('token', response.data.token);
             navigate('/login');
         } catch (error) {

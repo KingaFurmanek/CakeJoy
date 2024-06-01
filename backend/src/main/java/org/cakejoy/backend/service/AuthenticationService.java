@@ -4,7 +4,6 @@ import org.cakejoy.backend.api.external.AuthenticationRequest;
 import org.cakejoy.backend.api.external.AuthenticationResponse;
 import org.cakejoy.backend.api.external.RegisterRequest;
 import org.cakejoy.backend.api.external.UsersDTO;
-import org.springframework.stereotype.Service;
 
 
 public interface AuthenticationService {

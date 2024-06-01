@@ -14,4 +14,6 @@ import java.util.Set;
 public interface OrderUserRepository extends JpaRepository<OrderUser, Integer> {
     @Query("SELECT ou FROM OrderUser ou JOIN FETCH ou.order o WHERE ou.user = :user ORDER BY o.id DESC")
     List<OrderUser> findByUser(@Param("user") Users user);
+    @Query("SELECT ou.user.id FROM OrderUser ou WHERE ou.order.id = :orderId")
+    Integer findUserIdByOrderId(@Param("orderId") Integer order_id);
 }

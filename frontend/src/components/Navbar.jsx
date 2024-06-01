@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Importowanie komponentu Link z React Router
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo_2 from '../assets/logo_withoutBackground.svg';
 

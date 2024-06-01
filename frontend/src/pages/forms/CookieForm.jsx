@@ -10,10 +10,11 @@ import axios from '../../../axiosConfig';
 import MobileFooter from "../../components/MobileFooter.jsx";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {useNavigate} from "react-router-dom";
 
 function CookieForm() {
     const { chosenCategory } = useCategory();
-
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         quantity: '',
         flavours: [],
@@ -38,7 +39,7 @@ function CookieForm() {
                 }
             });
             console.log('Order submitted successfully:', response.data);
-            window.location.href = '/success';
+            navigate('/success');
         } catch (error) {
             console.error('Error submitting order:', error);
         }

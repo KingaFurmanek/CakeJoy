@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import PrimaryButton from '../components/PrimaryButton';
 import ButtonSign from '../components/ButtonSign';
 import './Account.css';
 import userImg from '../assets/login.svg';
@@ -42,7 +41,6 @@ function Account() {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             });
-            // Odśwież informacje o użytkowniku po udanym przesłaniu pliku
             fetchUserInfo();
         } catch (error) {
             console.error('Error uploading file:', error);

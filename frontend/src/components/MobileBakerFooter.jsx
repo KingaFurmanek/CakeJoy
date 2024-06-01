@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const MobileBakerFooter = () => {
     return (
         <footer className="media-footer">
-            <Link className='media-buttons' to="/account">
+            <Link className='media-buttons' to="/accountBaker">
                 <a className="account-button">
                     <img src={accountIcon} alt="Account" />
                 </a>

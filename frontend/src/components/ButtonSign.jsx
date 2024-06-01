@@ -1,22 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './ButtonSign.module.css';
 
 const ButtonSign = ({ color, children, onClick, redirectTo }) => {
-  // Sprawdzenie, czy kolor istnieje w stylach, jeśli nie, użyj domyślnego koloru
+  const navigate = useNavigate();
   const buttonColor = styles[color] ? styles[color] : styles.default;
 
   const handleClick = () => {
     if (redirectTo) {
-      window.location.href = redirectTo;
+      navigate(redirectTo);
     } else if (onClick) {
       onClick();
     }
   };
 
   return (
-    <button className={`${styles.button} ${buttonColor}`} onClick={handleClick}>
-      {children}
-    </button>
+      <button className={`${styles.button} ${buttonColor}`} onClick={handleClick}>
+        {children}
+      </button>
   );
 }
 

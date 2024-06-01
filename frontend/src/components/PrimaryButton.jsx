@@ -1,12 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './PrimaryButton.module.css';
 
 const PrimaryButton = ({ color, children, onClick, redirectTo }) => {
+    const navigate = useNavigate();
     const buttonClassName = `${styles.button} ${styles[color]}`;
 
     const handleClick = () => {
         if (redirectTo) {
-            window.location.href = redirectTo;
+            navigate(redirectTo);
         } else if (onClick) {
             onClick();
         }

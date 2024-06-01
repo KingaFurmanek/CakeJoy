@@ -10,9 +10,11 @@ import axios from '../../../axiosConfig';
 import MobileFooter from "../../components/MobileFooter.jsx";
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from "react-datepicker";
+import {useNavigate} from "react-router-dom";
 
 function CakeForm() {
     const { chosenCategory } = useCategory();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         quantity: '',
         occasion: '',
@@ -43,7 +45,7 @@ function CakeForm() {
                 }
             });
             console.log('Order submitted successfully:', response.data);
-            window.location.href = '/success';
+            navigate('/success');
         } catch (error) {
             console.error('Error submitting order:', error);
         }

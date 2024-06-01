@@ -10,24 +10,19 @@ import org.cakejoy.backend.mapper.OrdersMapper;
 import org.cakejoy.backend.repository.OrderUserRepository;
 import org.cakejoy.backend.repository.UsersRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class OrderUserServiceImpl implements OrderUserService {
 
-    private final OrdersService ordersService;
-    private final OrderUserMapper orderUserMapper;
     private final UsersRepository usersRepository;
     private final OrderUserRepository orderUserRepository;
     private final OrdersMapper ordersMapper;
 
     @Override
-    public Set<OrdersDTO> getUserOrders(Integer userId) {
+    public List<OrdersDTO> getUserOrders(Integer userId) {
         Users user = usersRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
 
@@ -38,6 +33,6 @@ public class OrderUserServiceImpl implements OrderUserService {
                     Orders order = orderUser.getOrder();
                     return ordersMapper.map(order);
                 })
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

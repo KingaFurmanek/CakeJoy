@@ -44,16 +44,16 @@
 .custom-checkboxes {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Aby zachować równy odstęp między kolumnami */
+    justify-content: space-between;
     width: 90%;
-    height: auto; /* Zmieniłem na auto, żeby dopasować się do zawartości */
-    flex-direction: row; /* Zmieniono na row, aby elementy układały się w jednym wierszu */
+    height: auto;
+    flex-direction: row;
     margin-bottom: 30px;
 }
 
 .custom-checkboxes .checkbox {
-    flex-basis: calc(50% - 10px); /* Ustawienie szerokości na 50% z odstępem 10px między checkboxami */
-    margin-bottom: 10px; /* Dodatkowy margines na dole */
+    flex-basis: calc(50% - 10px);
+    margin-bottom: 10px;
 }
 
 .form-details p {

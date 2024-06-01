@@ -5,7 +5,6 @@ import './AccountBaker.css';
 import userImg from '../assets/login.svg';
 import BakerNavbar from '../components/BakerNavbar';
 import {useNavigate} from "react-router-dom";
-import MobileFooter from "../components/MobileFooter.jsx";
 import MobileBakerFooter from "../components/MobileBakerFooter.jsx";
 
 function AccountBaker() {

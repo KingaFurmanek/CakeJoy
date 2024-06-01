@@ -29,7 +29,6 @@ const LoginPage = () => {
             const response = await axios.post('/api/auth/login', formData);
             localStorage.setItem('token', response.data.token);
             console.log(response.data);
-            // Dodaj przekierowanie na odpowiednią stronę na podstawie roli użytkownika
             const userRole = response.data.role;
             if (userRole === 'baker') {
                 navigate("/clientsOrders");

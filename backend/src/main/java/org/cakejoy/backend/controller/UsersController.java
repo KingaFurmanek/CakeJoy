@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class UsersController {
 
     private final UsersService usersService;
-    private final JwtService jwtService;
 
     @GetMapping("/info")
     public ResponseEntity<UsersDTO> getUserInfo(Authentication authentication) {

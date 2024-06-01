@@ -2,10 +2,11 @@ package org.cakejoy.backend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.cakejoy.backend.api.external.*;
-import org.cakejoy.backend.service.DecorationService;
-import org.cakejoy.backend.service.OrdersService;
+import org.cakejoy.backend.api.internal.Users;
+import org.cakejoy.backend.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -15,6 +16,12 @@ import java.util.List;
 public class OrdersController {
 
     private final OrdersService ordersService;
+    private final DecorationService decorationService;
+    private final AdditionalOptionsService additionalOptionsService;
+    private final SprinklesService sprinklesService;
+    private final FlavoursService flavoursService;
+    private final GlazeService glazeService;
+
 
     @GetMapping
     public List<OrdersDTO> getOrders() {
@@ -22,9 +29,17 @@ public class OrdersController {
     }
 
     @PostMapping("/submit")
-    public ResponseEntity<String> submitOrder(@RequestBody OrdersDTO orderRequestDTO) {
+    public ResponseEntity<String> submitOrder(Authentication authentication,@RequestBody OrdersDTO orderRequestDTO) {
+        Users currentUser = (Users) authentication.getPrincipal();
+        Integer userId = currentUser.getId();
+        orderRequestDTO.setUserId(userId);
         try {
-            ordersService.submitOrder(orderRequestDTO);
+            Integer orderId =  ordersService.submitOrder(orderRequestDTO);
+            decorationService.submitDecorations(orderRequestDTO, orderId);
+            additionalOptionsService.submitAdditionalOptions(orderRequestDTO, orderId);
+            flavoursService.submitFlavours(orderRequestDTO, orderId);
+            sprinklesService.submitSprinkles(orderRequestDTO, orderId);
+            glazeService.submitGlaze(orderRequestDTO, orderId);
             return ResponseEntity.ok("Order submitted successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error submitting order: " + e.getMessage());

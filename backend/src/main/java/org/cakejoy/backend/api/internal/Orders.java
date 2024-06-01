@@ -28,6 +28,7 @@ public class Orders {
     private String additionalInfo;
     private String colours;
     private String date;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

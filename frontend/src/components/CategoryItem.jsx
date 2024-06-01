@@ -1,5 +1,5 @@
 import React from 'react';
-import './CategoryItem.css'; // Zaimportuj plik ze stylami
+import './CategoryItem.css';
 
 const CategoryItem = ({ imgSrc, text, onCategorySelect }) => {
     const handleSelect = () => {
