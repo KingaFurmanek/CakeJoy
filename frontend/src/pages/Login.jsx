@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from '../../axiosConfig';
 import ButtonSign from '../components/ButtonSign';
 import Input from '../components/Input';
 import './login.css';
 import logo from '../assets/logo.svg';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext.jsx';
 
 const LoginPage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    const { setIsLoggedIn, setUserRole } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -28,9 +31,11 @@ const LoginPage = () => {
         try {
             const response = await axios.post('/api/auth/login', formData);
             localStorage.setItem('token', response.data.token);
-            console.log(response.data);
-            const userRole = response.data.role;
-            if (userRole === 'baker') {
+            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('userRole', response.data.role);
+            setIsLoggedIn(localStorage.getItem('isLoggedIn') === 'true');
+            setUserRole(response.data.role);
+            if (response.data.role === 'baker') {
                 navigate("/clientsOrders");
             } else {
                 navigate("/dashboard");

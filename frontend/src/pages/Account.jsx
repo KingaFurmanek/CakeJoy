@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ButtonSign from '../components/ButtonSign';
@@ -7,13 +7,19 @@ import userImg from '../assets/login.svg';
 import axios from "../../axiosConfig.js";
 import { useNavigate } from "react-router-dom";
 import MobileFooter from "../components/MobileFooter.jsx";
+import {AuthContext} from "../AuthContext.jsx";
 
 function Account() {
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState({});
+    const { setIsLoggedIn, setUserRole } = useContext(AuthContext);
 
     const handleLogout = () => {
         window.localStorage.removeItem('token');
+        window.localStorage.removeItem('isLoggedIn');
+        window.localStorage.removeItem('userRole');
+        setIsLoggedIn(false);
+        setUserRole('');
         navigate('/login');
     };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
@@ -18,38 +18,14 @@ import { CategoryProvider } from './components/CategoryContext';
 import CupcakeForm from "./pages/forms/CupcakeForm.jsx";
 import DonutForm from "./pages/forms/DonutForm.jsx";
 import CakeForm from "./pages/forms/CakeForm.jsx";
-import axios from '../axiosConfig';
+import { AuthProvider, AuthContext } from './AuthContext.jsx';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState('');
+  const {isLoggedIn, userRole } = useContext(AuthContext);
 
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          console.error('No token found');
-          return;
-        }
-        const response = await axios.get('/api/users/info', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setIsLoggedIn(true);
-        setUserRole(response.data.role.name);
-        console.log('User info fetched successfully:', response.data);
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-      }
-    };
-
-    fetchUserInfo();
-  }, []);
-
+  console.log(isLoggedIn);
   const ProtectedRoute = ({ element, ...rest }) => {
-    return isLoggedIn ? element : <Navigate to="/login" />;
+    return isLoggedIn && userRole === 'user' ? element : <Navigate to="/login" />;
   };
 
   const BakerRoute = ({ element, ...rest }) => {
@@ -85,4 +61,10 @@ function App() {
   );
 }
 
-export default App;
+const AppWrapper = () => (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+);
+
+export default AppWrapper;
