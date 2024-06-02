@@ -1,6 +1,7 @@
 # Cake Joy ✨
 
-![logo (4) (3)](https://github.com/KingaFurmanek/wdpai2024/assets/75860275/3fe4c653-5b64-4502-a65b-5f8ed3835ab8)
+<img src="https://github.com/KingaFurmanek/CakeJoy/assets/75860275/13b4509c-2e4a-476c-bc91-6d9bec2171e1" alt="logo" width="300" height="300">
+
 
 ## Opis
 
@@ -11,11 +12,11 @@ Dodatkowo, CakeJoy oferuje pełną swobodę w wyborze ilości produktów oraz da
 Dołącz do społeczności CakeJoy i ciesz się niepowtarzalnym doświadczeniem cukierniczym! 🍰✨
 
 ## Spis 
-- [Opis](#description)
-- [Funkcje](#features)
+- [Opis](#opis)
+- [Funkcje](#funkcje)
 - [Demo](#demo)
 - [ERD Diagram](#erd-diagram)
-- [Contact](#contact)
+- [Kontakt](#kontakt)
 
 ## Funkcje
 
@@ -57,7 +58,7 @@ Dołącz do społeczności CakeJoy i ciesz się niepowtarzalnym doświadczeniem 
 
 ![image](https://github.com/KingaFurmanek/CakeJoy/assets/75860275/025a6477-f599-435a-839d-85dd25a08945)
 
-**Baker's page:**
+## **Baker's page:**
 ![image](https://github.com/KingaFurmanek/CakeJoy/assets/75860275/91784e06-420a-4548-9136-8e5503fcbbba)
 ![image](https://github.com/KingaFurmanek/CakeJoy/assets/75860275/6c676278-7cae-4445-8f00-7376f410f58e)
 
