@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Lottie from 'react-lottie';
 import submitAnimation from '../../animations/submit.json';
 import MobileBakerFooter from "../../components/MobileBakerFooter.jsx";
+import OrderTracker from "../../components/OrderTracker.jsx";
 
 function Order() {
     const [status, setStatus] = useState('In preparation');
@@ -113,6 +114,7 @@ function Order() {
                             </select>
                             <PrimaryButton color="blue" onClick={handleSubmit}>Submit</PrimaryButton>
                         </div>
+                        <OrderTracker/>
                     </>
                 )}
             </div>

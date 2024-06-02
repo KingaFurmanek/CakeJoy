@@ -48,6 +48,7 @@ function Order({ match }) {
                             {order.sprinkles.length > 0 && <p>Sprinkles: {order.sprinkles.join(', ')}</p>}
                         </div>
                         <OrderTracker/>
+                        <p className="gotOrder">Got your order? Rate Us!</p>
                         <RatingComponent/>
                     </>
                 )}

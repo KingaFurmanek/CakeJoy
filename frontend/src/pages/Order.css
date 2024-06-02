@@ -1,3 +1,8 @@
+.gotOrder{
+    padding-top: 20px;
+    color: #63565C;
+}
+
 @media(max-width: 600px){
     .order-number{
         width: 60%;
