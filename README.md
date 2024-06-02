@@ -65,8 +65,7 @@ Dołącz do społeczności CakeJoy i ciesz się niepowtarzalnym doświadczeniem 
 
 ## ERD Diagram
 
-![cakejoy_erd](https://github.com/KingaFurmanek/CakeJoy/assets/75860275/c5b338bd-5a8b-4b62-ad8c-23cc031163d1)
-
+![cakejoy_erd](https://github.com/KingaFurmanek/CakeJoy/assets/75860275/033d8d2f-5b13-48a5-827d-ac6e96ef4820)
 
 ## Kontakt
 
